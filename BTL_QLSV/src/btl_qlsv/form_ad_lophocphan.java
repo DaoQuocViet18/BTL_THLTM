@@ -51,7 +51,8 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
         combTHP = new javax.swing.JComboBox<>();
         btnThemSV = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txtMLHP1 = new javax.swing.JTextField();
+        txtMLHP = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,7 +101,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Tìm kiếm theo:");
+        jLabel5.setText("Tìm kiếm theo mã:");
 
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +121,14 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
         jLabel4.setText("Mã lớp học phần:");
 
-        txtMLHP1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtMLHP.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,7 +157,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(41, 41, 41)
-                                .addComponent(txtMLHP1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtMLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTimKiem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -157,7 +165,9 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                             .addComponent(btnSua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnThemSV)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnThemSV)
+                            .addComponent(btnReset))
                         .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -170,7 +180,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                     .addComponent(btnThemSV)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(txtMLHP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtMLHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSua)
@@ -187,7 +197,8 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtTKT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiem))
+                    .addComponent(btnTimKiem)
+                    .addComponent(btnReset))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -199,6 +210,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
     private void tb_lophocphanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_lophocphanMouseClicked
         int row = tb_lophocphan.getSelectedRow();
 
+        txtMLHP.setText((String) tb_lophocphan.getValueAt(row, 0));
         txtTLHP.setText((String) tb_lophocphan.getValueAt(row, 1));
         combTHP.setSelectedItem(tb_lophocphan.getValueAt(row, 2));
     }//GEN-LAST:event_tb_lophocphanMouseClicked
@@ -209,26 +221,23 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             if (!Ktra_txt_comb()) {
                 return;
             }
-            String tenLopHocPhan = txtTLHP.getText(); // Get text from txtTLHP
-            int maHocPhan = this.getMaHP(combTHP.getSelectedItem().toString());
+            String maLopHocPhan = txtMLHP.getText();
+            String tenLopHocPhan = txtTLHP.getText();
+            String maHocPhan = this.getMaHP(combTHP.getSelectedItem().toString());
 
-            String sql_l = "INSERT INTO diemhocphan() VALUES ()";
-            DataAccess.inSertEditDelete(sql_l);
-
-            sql_l = "SELECT MaDiemHocPhan "
-                    + "FROM diemhocphan "
-                    + "ORDER BY MaDiemHocPhan DESC "
-                    + "LIMIT 1";
+            String sql_l = "SELECT Count(*) FROM diemhocphan";
             ResultSet rs = DataAccess.getResult(sql_l);
             rs.next();
-            int MaDiemHocPhan = rs.getInt(1);
+            int MaDiemHocPhan = rs.getInt(1) + 1;
 
-            sql_l = "INSERT INTO lophocphan (TenLopHocPhan, MaHocPhan, MaDiemHocPhan) "
-                    + "VALUES ('" + tenLopHocPhan + "'," + maHocPhan + "," + MaDiemHocPhan + ")";
+            sql_l = "INSERT INTO diemhocphan(MaDiemHocPhan) VALUES ('DHP" + MaDiemHocPhan + "')";
+            DataAccess.inSertEditDelete(sql_l);
+
+            sql_l = "INSERT INTO lophocphan (MaLopHocPhan, TenLopHocPhan, MaHocPhan, MaDiemHocPhan) "
+                    + "VALUES ('" + maLopHocPhan + "', '" + tenLopHocPhan + "', '" + maHocPhan + "', 'DHP" + MaDiemHocPhan + "')";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
 
-            Reset_page_form_ad_lophocphan();
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -242,19 +251,18 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                 return;
             }
             int row = tb_lophocphan.getSelectedRow();
-            int maLopHocPhan = Integer.parseInt((String) tb_lophocphan.getValueAt(row, 0));
+            String maLopHocPhan = (String) tb_lophocphan.getValueAt(row, 0);
 
             String tenLopHocPhan = txtTLHP.getText(); // Get text from txtTLHP
-            int maHocPhan = this.getMaHP(combTHP.getSelectedItem().toString());
+            String maHocPhan = this.getMaHP(combTHP.getSelectedItem().toString());
 
             String sql_l = "UPDATE lophocphan "
                     + "SET TenLopHocPhan = '" + tenLopHocPhan + "', "
-                    + "MaHocPhan = " + maHocPhan + " "
-                    + "WHERE MaLopHocPhan = " + maLopHocPhan + " ";
+                    + "MaHocPhan = '" + maHocPhan + "' "
+                    + "WHERE MaLopHocPhan = '" + maLopHocPhan + "' ";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
 
-            Reset_page_form_ad_lophocphan();
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -267,19 +275,16 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                 return;
             }
             int row = tb_lophocphan.getSelectedRow();
-            int maLopHocPhan = Integer.parseInt((String) tb_lophocphan.getValueAt(row, 0));
+            String maLopHocPhan = (String) tb_lophocphan.getValueAt(row, 0);
 
-            String sql_l = "DELETE FROM lophocphan WHERE MaLopHocPhan = " + maLopHocPhan + " ";
-            DataAccess.inSertEditDelete(sql_l);
-            int maDiemHocPhan = this.getMaDHP();
-            
-            sql_l = "DELETE FROM lophocphan WHERE MaLopHocPhan = " + maLopHocPhan + " ";
-            DataAccess.inSertEditDelete(sql_l);
-            
-            sql_l = "DELETE FROM diemhocphan WHERE MaDiemHocPhan = " + maDiemHocPhan + " ";
+            String maDiemHocPhan = this.getMaDHP();
+            String sql_l = "DELETE FROM lophocphan WHERE MaLopHocPhan = '" + maLopHocPhan + "' ";
             DataAccess.inSertEditDelete(sql_l);
 
-            Reset_page_form_ad_lophocphan();
+            
+            sql_l = "DELETE FROM diemhocphan WHERE MaDiemHocPhan = '" + maDiemHocPhan + "' ";
+            DataAccess.inSertEditDelete(sql_l);
+
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -288,15 +293,20 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         try {
             // TODO add your handling code here:
+//            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, lhp.SiSo, lhp.DanhSachSinhVien "
+//                    + "FROM lophocphan as lhp "
+//                    + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan "
+//                    + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
+//                    + "INSTR(lhp.TenLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
+//                    + "INSTR(lhp.MaHocPhan, '" + txtTKT.getText() + "') > 0 OR "
+//                    + "INSTR(lhp.MaDiemHocPhan, '" + txtTKT.getText() + "') > 0 OR "
+//                    + "INSTR(lhp.SiSo, '" + txtTKT.getText() + "') > 0 OR "
+//                    + "INSTR(lhp.DanhSachSinhVien, '" + txtTKT.getText() + "') > 0";
+            
             String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, lhp.SiSo, lhp.DanhSachSinhVien "
                     + "FROM lophocphan as lhp "
                     + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan "
-                    + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
-                    + "INSTR(lhp.TenLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
-                    + "INSTR(lhp.MaHocPhan, '" + txtTKT.getText() + "') > 0 OR "
-                    + "INSTR(lhp.MaDiemHocPhan, '" + txtTKT.getText() + "') > 0 OR "
-                    + "INSTR(lhp.SiSo, '" + txtTKT.getText() + "') > 0 OR "
-                    + "INSTR(lhp.DanhSachSinhVien, '" + txtTKT.getText() + "') > 0";
+                    + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0";
             ResultSet rs = DataAccess.getResult(sql_l);
             DefaultTableModel dtm = (DefaultTableModel) tb_lophocphan.getModel();
             dtm.setRowCount(0);
@@ -319,7 +329,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
     private void btnThemSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSVActionPerformed
         try {
             // TODO add your handling code here:
-            int maDiemHocPhan = this.getMaDHP();
+            String maDiemHocPhan = this.getMaDHP();
             form_ad_diemhocphan dhp = new form_ad_diemhocphan(maDiemHocPhan);
             dhp.setVisible(true);
             dhp.hienThi_maDHP();
@@ -327,6 +337,14 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemSVActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtMLHP.setText("");
+        txtTLHP.setText("");
+        combTHP.setSelectedIndex(0);
+        HienThi_tb_lophocphan();
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,12 +379,6 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                 new form_ad_lophocphan().setVisible(true);
             }
         });
-    }
-
-    private void Reset_page_form_ad_lophocphan() {
-        txtTLHP.setText("");
-        combTHP.setSelectedIndex(0);
-        HienThi_tb_lophocphan();
     }
 
     private void HienThi_tb_lophocphan() {
@@ -430,22 +442,21 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
         }
     }
 
-    private int getMaHP(String TenHP) throws SQLException {
+    private String getMaHP(String TenHP) throws SQLException {
         try {
             String sql_l = "SELECT MaHocPhan "
                     + "FROM hocphan "
                     + "WHERE TenHocPhan = '" + TenHP + "';";
             ResultSet rs = DataAccess.getResult(sql_l);
             rs.next();
-            int kq = Integer.parseInt(rs.getString(1));
-            return kq;
+            return rs.getString(1);
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
         }
     }
-    
-    private int getMaDHP() throws SQLException {
+
+    private String getMaDHP() throws SQLException {
         try {
             int row = tb_lophocphan.getSelectedRow();
 
@@ -453,11 +464,11 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
             String sql_l = "SELECT MaDiemHocPhan "
                     + "FROM lophocphan "
-                    + "WHERE MaLopHocPhan = " + maLopHocPhan + " "
+                    + "WHERE MaLopHocPhan = '" + maLopHocPhan + "' "
                     + "LIMIT 1";
             ResultSet rs = DataAccess.getResult(sql_l);
             rs.next();
-            return rs.getInt("MaDiemHocPhan");
+            return rs.getString("MaDiemHocPhan");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
@@ -496,6 +507,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThemSV;
@@ -508,7 +520,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb_lophocphan;
-    private javax.swing.JTextField txtMLHP1;
+    private javax.swing.JTextField txtMLHP;
     private javax.swing.JTextField txtTKT;
     private javax.swing.JTextField txtTLHP;
     // End of variables declaration//GEN-END:variables

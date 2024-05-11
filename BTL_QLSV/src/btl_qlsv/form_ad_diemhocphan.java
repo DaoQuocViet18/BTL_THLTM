@@ -17,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class form_ad_diemhocphan extends javax.swing.JFrame {
 
-    public int maDienHocPhan;
+    public String maDienHocPhan;
 
     /**
      * Creates new form form_ad_diemhocphan
      */
-    public form_ad_diemhocphan(int MaDienHocPhan) {
+    public form_ad_diemhocphan(String MaDienHocPhan) {
         initComponents();
         this.maDienHocPhan = MaDienHocPhan;
     }
