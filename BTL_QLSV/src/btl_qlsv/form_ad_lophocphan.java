@@ -49,9 +49,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
         txtTKT = new javax.swing.JTextField();
         combTHP = new javax.swing.JComboBox<>();
-        btnThemSV = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtMLHP = new javax.swing.JTextField();
+        btnChiTiet = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,7 +99,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Tìm kiếm theo mã:");
+        jLabel5.setText("Tìm kiếm (mã, tên):");
 
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -112,16 +110,12 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
         combTHP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
-        btnThemSV.setText("Thêm SV");
-        btnThemSV.addActionListener(new java.awt.event.ActionListener() {
+        btnChiTiet.setText("Chi tiết");
+        btnChiTiet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemSVActionPerformed(evt);
+                btnChiTietActionPerformed(evt);
             }
         });
-
-        jLabel4.setText("Mã lớp học phần:");
-
-        txtMLHP.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -139,25 +133,15 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(combTHP, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(41, 41, 41)
-                                    .addComponent(txtTLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtTKT, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(41, 41, 41)
-                                .addComponent(txtMLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTKT, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(combTHP, javax.swing.GroupLayout.Alignment.TRAILING, 0, 319, Short.MAX_VALUE)
+                            .addComponent(txtTLHP, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTimKiem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -166,33 +150,32 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                             .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnThemSV)
+                            .addComponent(btnChiTiet)
                             .addComponent(btnReset))
-                        .addGap(0, 3, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem)
-                    .addComponent(btnThemSV)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(txtMLHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSua)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtTLHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXoa)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(combTHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnThem)
+                            .addComponent(btnChiTiet))
+                        .addGap(20, 20, 20)
+                        .addComponent(btnSua))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtTLHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(combTHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(27, 27, 27)
+                .addComponent(btnXoa)
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -210,7 +193,6 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
     private void tb_lophocphanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_lophocphanMouseClicked
         int row = tb_lophocphan.getSelectedRow();
 
-        txtMLHP.setText((String) tb_lophocphan.getValueAt(row, 0));
         txtTLHP.setText((String) tb_lophocphan.getValueAt(row, 1));
         combTHP.setSelectedItem(tb_lophocphan.getValueAt(row, 2));
     }//GEN-LAST:event_tb_lophocphanMouseClicked
@@ -221,12 +203,16 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             if (!Ktra_txt_comb()) {
                 return;
             }
-            String maLopHocPhan = txtMLHP.getText();
             String tenLopHocPhan = txtTLHP.getText();
             String maHocPhan = this.getMaHP(combTHP.getSelectedItem().toString());
 
-            String sql_l = "SELECT Count(*) FROM diemhocphan";
+            String sql_l = "SELECT Count(*) FROM lophocphan";
             ResultSet rs = DataAccess.getResult(sql_l);
+            rs.next();
+            int MaLopHocPhan = rs.getInt(1) + 1;
+
+            sql_l = "SELECT Count(*) FROM diemhocphan";
+            rs = DataAccess.getResult(sql_l);
             rs.next();
             int MaDiemHocPhan = rs.getInt(1) + 1;
 
@@ -234,10 +220,10 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             DataAccess.inSertEditDelete(sql_l);
 
             sql_l = "INSERT INTO lophocphan (MaLopHocPhan, TenLopHocPhan, MaHocPhan, MaDiemHocPhan) "
-                    + "VALUES ('" + maLopHocPhan + "', '" + tenLopHocPhan + "', '" + maHocPhan + "', 'DHP" + MaDiemHocPhan + "')";
+                    + "VALUES ('LHP" + MaLopHocPhan + "', '" + tenLopHocPhan + "', '" + maHocPhan + "', 'DHP" + MaDiemHocPhan + "')";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
-
+            HienThi_tb_lophocphan();
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -262,7 +248,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                     + "WHERE MaLopHocPhan = '" + maLopHocPhan + "' ";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
-
+            HienThi_tb_lophocphan();
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -281,10 +267,9 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             String sql_l = "DELETE FROM lophocphan WHERE MaLopHocPhan = '" + maLopHocPhan + "' ";
             DataAccess.inSertEditDelete(sql_l);
 
-            
             sql_l = "DELETE FROM diemhocphan WHERE MaDiemHocPhan = '" + maDiemHocPhan + "' ";
             DataAccess.inSertEditDelete(sql_l);
-
+            HienThi_tb_lophocphan();
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -302,11 +287,12 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 //                    + "INSTR(lhp.MaDiemHocPhan, '" + txtTKT.getText() + "') > 0 OR "
 //                    + "INSTR(lhp.SiSo, '" + txtTKT.getText() + "') > 0 OR "
 //                    + "INSTR(lhp.DanhSachSinhVien, '" + txtTKT.getText() + "') > 0";
-            
+
             String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, lhp.SiSo, lhp.DanhSachSinhVien "
                     + "FROM lophocphan as lhp "
                     + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan "
-                    + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0";
+                    + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
+                    + "INSTR(lhp.TenLopHocPhan, '" + txtTKT.getText() + "') > 0";
             ResultSet rs = DataAccess.getResult(sql_l);
             DefaultTableModel dtm = (DefaultTableModel) tb_lophocphan.getModel();
             dtm.setRowCount(0);
@@ -326,21 +312,23 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
-    private void btnThemSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSVActionPerformed
+    private void btnChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietActionPerformed
         try {
             // TODO add your handling code here:
+            int row = tb_lophocphan.getSelectedRow();
+            String maLopHocPhan = (String) tb_lophocphan.getValueAt(row, 0);
+            
             String maDiemHocPhan = this.getMaDHP();
-            form_ad_diemhocphan dhp = new form_ad_diemhocphan(maDiemHocPhan);
+            String maNganh = this.getMaNganh();
+            form_ad_diemhocphan dhp = new form_ad_diemhocphan(maDiemHocPhan, maNganh, maLopHocPhan);
             dhp.setVisible(true);
-            dhp.hienThi_maDHP();
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnThemSVActionPerformed
+    }//GEN-LAST:event_btnChiTietActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtMLHP.setText("");
         txtTLHP.setText("");
         combTHP.setSelectedIndex(0);
         HienThi_tb_lophocphan();
@@ -383,7 +371,10 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
     private void HienThi_tb_lophocphan() {
         try {
-            ResultSet rs = this.getLopHP();
+            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, lhp.SiSo, lhp.DanhSachSinhVien "
+                    + "FROM lophocphan as lhp "
+                    + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan ";
+            ResultSet rs = DataAccess.getResult(sql_l);
             DefaultTableModel dtm = (DefaultTableModel) tb_lophocphan.getModel();
             dtm.setRowCount(0);
             while (rs.next()) {
@@ -407,7 +398,8 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
         // Improved loop using try-with-resources for automatic closing
         try {
-            ResultSet rs = this.getTenLHP();
+            String sql_l = "SELECT TenHocPhan FROM hocphan";
+            ResultSet rs = DataAccess.getResult(sql_l);
             while (rs.next()) {
                 String TenHP = rs.getString("TenHocPhan"); // Assuming the column name is "TenLHP"
                 combTHP.addItem(TenHP);
@@ -415,30 +407,6 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
         } catch (SQLException e) {
             // Handle SQL exceptions appropriately (e.g., log the error, display a message to the user)
             System.err.println("Error retrieving data from database: " + e.getMessage());
-        }
-    }
-
-    private ResultSet getTenLHP() throws SQLException {
-        try {
-            String sql_l = "SELECT TenHocPhan FROM hocphan";
-            ResultSet rs = DataAccess.getResult(sql_l);
-            return rs;
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;  // Re-throw the SQLException for proper handling
-        }
-    }
-
-    public ResultSet getLopHP() throws SQLException {
-        try {
-            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, lhp.SiSo, lhp.DanhSachSinhVien "
-                    + "FROM lophocphan as lhp "
-                    + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan ";
-            ResultSet rs = DataAccess.getResult(sql_l);
-            return rs;
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;  // Re-throw the SQLException for proper handling
         }
     }
 
@@ -469,6 +437,25 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             ResultSet rs = DataAccess.getResult(sql_l);
             rs.next();
             return rs.getString("MaDiemHocPhan");
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;  // Re-throw the SQLException for proper handling
+        }
+    }
+
+    private String getMaNganh() throws SQLException {
+        try {
+            int row = tb_lophocphan.getSelectedRow();
+
+            String maLopHocPhan = tb_lophocphan.getValueAt(row, 0).toString();
+
+            String sql_l = "SELECT hp.MaNganh "
+                    + "FROM hocphan AS hp "
+                    + "JOIN lophocphan AS lhp ON lhp.MaLopHocPhan = '" + maLopHocPhan + "' AND  lhp.MaHocPhan = hp.MaHocPhan "
+                    + "LIMIT 1";
+            ResultSet rs = DataAccess.getResult(sql_l);
+            rs.next();
+            return rs.getString("MaNganh");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
@@ -507,20 +494,18 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChiTiet;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThemSV;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> combTHP;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb_lophocphan;
-    private javax.swing.JTextField txtMLHP;
     private javax.swing.JTextField txtTKT;
     private javax.swing.JTextField txtTLHP;
     // End of variables declaration//GEN-END:variables
