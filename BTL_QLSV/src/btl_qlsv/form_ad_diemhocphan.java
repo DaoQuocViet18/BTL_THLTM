@@ -99,6 +99,11 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         jLabel5.setText("Tìm kiếm theo:");
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setText("Xóa");
 
@@ -114,13 +119,13 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
 
         tb_diemlophocphan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã SV", "Tên SV", "Điểm hs 1-1", "Điểm hs 1-2", "Điểm hs 2-1", "Điểm hs 2-2", "Điểm thi CKỳ", "Điểm TK", "Điểm TK - td4"
+                "Mã SV", "Tên SV", "Điểm hs 1-1", "Điểm hs 1-2", "Điểm hs 2-1", "Điểm hs 2-2", "Điểm thi CKỳ", "Điểm TK", "Thang điểm 4", "Điểm chữ"
             }
         ));
         jScrollPane1.setViewportView(tb_diemlophocphan);
@@ -159,7 +164,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -274,6 +279,28 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             String tenSV = combTSV.getItemAt(combTSV.getSelectedIndex());
             String maSV = this.getMaSV(tenSV);
 
+            if (txtDHS1_1.getText().trim().isEmpty()) {
+                txtDHS1_1.setText(" ");
+            }
+            if (txtDHS1_2.getText().trim().isEmpty()) {
+                txtDHS1_2.setText(" ");
+            }
+            if (txtDHS2_1.getText().trim().isEmpty()) {
+                txtDHS2_1.setText(" ");
+            }
+            if (txtDHS2_2.getText().trim().isEmpty()) {
+                txtDHS2_2.setText(" ");
+            }
+            if (txtDTCK.getText().trim().isEmpty()) {
+                txtDTCK.setText(" ");
+            }
+            if (txtDTK.getText().trim().isEmpty()) {
+                txtDTK.setText(" ");
+            }
+            if (txtDTCK_TD4.getText().trim().isEmpty()) {
+                txtDTCK_TD4.setText(" ");
+            }
+
             if (tb_diemlophocphan.getValueAt(0, 0) != null) {
                 String sql = "UPDATE diemhocphan SET "
                         + "MaSinhVien = CASE WHEN MaSinhVien IS NULL OR MaSinhVien = '' THEN '" + maSV + "' ELSE CONCAT(MaSinhVien, '_" + maSV + "') END, "
@@ -283,7 +310,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                         + "DiemHeSo2_2 = CASE WHEN DiemHeSo2_2 IS NULL OR DiemHeSo2_2 = '' THEN '" + txtDHS2_2.getText() + "' ELSE CONCAT(DiemHeSo2_2, '_" + txtDHS2_2.getText() + "') END, "
                         + "DiemThiCuoiKy = CASE WHEN DiemThiCuoiKy IS NULL OR DiemThiCuoiKy = '' THEN '" + txtDTCK.getText() + "' ELSE CONCAT(DiemThiCuoiKy, '_" + txtDTCK.getText() + "') END, "
                         + "DiemTongKet = CASE WHEN DiemTongKet IS NULL OR DiemTongKet = '' THEN '" + txtDTK.getText() + "' ELSE CONCAT(DiemTongKet, '_" + txtDTK.getText() + "') END, "
-                        + "DiemTongKet_TD4 = CASE WHEN DiemTongKet_TD4 IS NULL OR DiemTongKet_TD4 = '' THEN '" + txtDTCK_TD4.getText() + "' ELSE CONCAT(DiemTongKet_TD4, '_" + txtDTCK_TD4.getText() + "') END, "
+                        + "DiemTongKet_TD4 = CASE WHEN DiemTongKet_TD4 IS NULL OR DiemTongKet_TD4 = '' THEN '" + txtDTCK_TD4.getText() + "' ELSE CONCAT(DiemTongKet_TD4, '_" + txtDTCK_TD4.getText() + "') END "
                         + "WHERE MaDiemHocPhan = '" + this.maDienHocPhan + "'";
                 DataAccess.inSertEditDelete(sql);
 
@@ -348,6 +375,73 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combTSVActionPerformed
 
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            String tenSV = combTSV.getItemAt(combTSV.getSelectedIndex());
+            String maSV = this.getMaSV(tenSV);
+
+            if (txtDHS1_1.getText().trim().isEmpty()) {
+                txtDHS1_1.setText(" ");
+            }
+            if (txtDHS1_2.getText().trim().isEmpty()) {
+                txtDHS1_2.setText(" ");
+            }
+            if (txtDHS2_1.getText().trim().isEmpty()) {
+                txtDHS2_1.setText(" ");
+            }
+            if (txtDHS2_2.getText().trim().isEmpty()) {
+                txtDHS2_2.setText(" ");
+            }
+            if (txtDTCK.getText().trim().isEmpty()) {
+                txtDTCK.setText(" ");
+            }
+            if (txtDTK.getText().trim().isEmpty()) {
+                txtDTK.setText(" ");
+            }
+            if (txtDTCK_TD4.getText().trim().isEmpty()) {
+                txtDTCK_TD4.setText(" ");
+            }
+
+            if (tb_diemlophocphan.getValueAt(0, 0) != null) {
+                String sql = "UPDATE diemhocphan SET "
+                        + "MaSinhVien = CASE WHEN MaSinhVien IS NULL OR MaSinhVien = '' THEN '" + maSV + "' ELSE CONCAT(MaSinhVien, '_" + maSV + "') END, "
+                        + "DiemHeSo1_1 = CASE WHEN DiemHeSo1_1 IS NULL OR DiemHeSo1_1 = '' THEN '" + txtDHS1_1.getText() + "' ELSE CONCAT(DiemHeSo1_1, '_" + txtDHS1_1.getText() + "') END, "
+                        + "DiemHeSo1_2 = CASE WHEN DiemHeSo1_2 IS NULL OR DiemHeSo1_2 = '' THEN '" + txtDHS1_2.getText() + "' ELSE CONCAT(DiemHeSo1_2, '_" + txtDHS1_2.getText() + "') END, "
+                        + "DiemHeSo2_1 = CASE WHEN DiemHeSo2_1 IS NULL OR DiemHeSo2_1 = '' THEN '" + txtDHS2_1.getText() + "' ELSE CONCAT(DiemHeSo2_1, '_" + txtDHS2_1.getText() + "') END, "
+                        + "DiemHeSo2_2 = CASE WHEN DiemHeSo2_2 IS NULL OR DiemHeSo2_2 = '' THEN '" + txtDHS2_2.getText() + "' ELSE CONCAT(DiemHeSo2_2, '_" + txtDHS2_2.getText() + "') END, "
+                        + "DiemThiCuoiKy = CASE WHEN DiemThiCuoiKy IS NULL OR DiemThiCuoiKy = '' THEN '" + txtDTCK.getText() + "' ELSE CONCAT(DiemThiCuoiKy, '_" + txtDTCK.getText() + "') END, "
+                        + "DiemTongKet = CASE WHEN DiemTongKet IS NULL OR DiemTongKet = '' THEN '" + txtDTK.getText() + "' ELSE CONCAT(DiemTongKet, '_" + txtDTK.getText() + "') END, "
+                        + "DiemTongKet_TD4 = CASE WHEN DiemTongKet_TD4 IS NULL OR DiemTongKet_TD4 = '' THEN '" + txtDTCK_TD4.getText() + "' ELSE CONCAT(DiemTongKet_TD4, '_" + txtDTCK_TD4.getText() + "') END "
+                        + "WHERE MaDiemHocPhan = '" + this.maDienHocPhan + "'";
+                DataAccess.inSertEditDelete(sql);
+
+                sql = "UPDATE lophocphan "
+                        + "SET DanhSachSinhVien = "
+                        + "CASE "
+                        + "WHEN DanhSachSinhVien IS NULL OR DanhSachSinhVien = '' THEN '" + maSV + "' "
+                        + "ELSE CONCAT(DanhSachSinhVien, '_" + maSV + "') "
+                        + "END "
+                        + "WHERE MaLopHocPhan = '" + this.maLopHocPhan + "'";
+                DataAccess.inSertEditDelete(sql);
+
+                sql = "UPDATE sinhvien "
+                        + "SET MaLopHocPhan = "
+                        + "CASE "
+                        + "WHEN MaLopHocPhan IS NULL OR MaLopHocPhan = '' THEN '" + this.maLopHocPhan + "' "
+                        + "ELSE CONCAT(MaLopHocPhan, '_" + this.maLopHocPhan + "') "
+                        + "END "
+                        + "WHERE MaSinhVien = '" + maSV + "'";
+                DataAccess.inSertEditDelete(sql);
+
+                HienThi_tb_diemhocphan();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
     //JOptionPane.showMessageDialog(null, "maDienHocPhan = " + this.maDienHocPhan, "Notification", JOptionPane.INFORMATION_MESSAGE);
     private void Them_TenHP_vao_combTL() {
 
@@ -371,21 +465,6 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             String sql_l = "SELECT MaSinhVien "
                     + "FROM sinhvien "
                     + "WHERE TenSinhVien = '" + TenSV + "' "
-                    + "LIMIT 1;";
-            ResultSet rs = DataAccess.getResult(sql_l);
-            rs.next();
-            return rs.getString(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;  // Re-throw the SQLException for proper handling
-        }
-    }
-
-    private String getDSSV() throws SQLException {
-        try {
-            String sql_l = "SELECT DanhSachSinhVien "
-                    + "FROM sinhvien "
-                    + "WHERE MaLopHocPhan = '" + this.maLopHocPhan + "' "
                     + "LIMIT 1;";
             ResultSet rs = DataAccess.getResult(sql_l);
             rs.next();
@@ -439,7 +518,8 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                         diemHeSo2_2[i],
                         diemThiCuoiKy[i],
                         diemTongKet[i],
-                        diemTongKet_TD4[i], //    rs.getString(9),
+                        diemTongKet_TD4[i], 
+                        getTDChu(diemTongKet_TD4[i])
                     };
                     dtm.addRow(objlist);
                 }
@@ -449,6 +529,44 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private String getTDChu(String TKSo) {
+        
+        if (TKSo.trim().isEmpty()) {
+            return " "; 
+        }  
+        
+        float tkSo = Float.parseFloat(TKSo.trim());
+        if (tkSo == 0) {
+            return "F"; 
+        }
+        else if (tkSo == 0.5) {
+            return "F+"; 
+        }
+        else if (tkSo == 1) {
+            return "D"; 
+        }
+        else if (tkSo == 1.5) {
+            return "D+"; 
+        }
+        else if (tkSo == 2) {
+            return "C"; 
+        }
+        else if (tkSo == 2.5) {
+            return "C+"; 
+        }
+        else if (tkSo == 3) {
+            return "B"; 
+        }
+        else if (tkSo == 3.5) {
+            return "B+"; 
+        }
+        else if (tkSo == 4) {
+            return "A"; 
+        }
+        else
+            return null;
     }
 
     private ResultSet getdiemHP() throws SQLException {
