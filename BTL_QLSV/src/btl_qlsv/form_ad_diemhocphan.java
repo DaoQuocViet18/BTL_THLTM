@@ -24,6 +24,15 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
     String maDienHocPhan;
     String maNganh;
 
+    String[] maSinhVien;
+    String[] diemHeSo1_1;
+    String[] diemHeSo1_2;
+    String[] diemHeSo2_1;
+    String[] diemHeSo2_2;
+    String[] diemThiCuoiKy;
+    String[] diemTongKet;
+    String[] diemTongKet_TD4;
+
     /**
      * Creates new form form_ad_diemhocphan
      */
@@ -33,7 +42,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         this.maDienHocPhan = MaDienHocPhan;
         this.maNganh = maNganh;
 
-        Them_TenHP_vao_combTL();
+        Them_TenL_vao_combTL();
         HienThi_tb_diemhocphan();
         // JOptionPane.showMessageDialog(null, "maDienHocPhan = " + this.maDienHocPhan, "Notification", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -78,6 +87,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         combTL = new javax.swing.JComboBox<>();
         combTSV = new javax.swing.JComboBox<>();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +116,11 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         });
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Tên sinh viên:");
 
@@ -128,6 +143,11 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                 "Mã SV", "Tên SV", "Điểm hs 1-1", "Điểm hs 1-2", "Điểm hs 2-1", "Điểm hs 2-2", "Điểm thi CKỳ", "Điểm TK", "Thang điểm 4", "Điểm chữ"
             }
         ));
+        tb_diemlophocphan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_diemlophocphanMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_diemlophocphan);
 
         btnThoat.setText("Thoát");
@@ -145,9 +165,10 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             }
         });
 
-        combTSV.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combTSVActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -196,6 +217,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                                                         .addComponent(combTSV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                 .addGap(74, 74, 74)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(btnSua)
                                                     .addComponent(btnXoa)
                                                     .addComponent(btnThem)
@@ -237,8 +259,9 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDHS2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(txtDHS2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReset))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtDHS2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,98 +364,83 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
 
     private void combTLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTLActionPerformed
         // Improved loop using try-with-resources for automatic closing
-        try {
-            DefaultTableModel model = (DefaultTableModel) tb_diemlophocphan.getModel();
-            int rowCount = model.getRowCount();
-
-            StringBuilder maSinhVien = new StringBuilder();
-            for (int i = 0; i < rowCount; i++) {
-                String maSV = (String) model.getValueAt(i, 0);
-                maSinhVien.append("'" + maSV + "'");
-                if (i < rowCount - 1) {
-                    maSinhVien.append(", ");
-                }
-            }
-
-            String allStudentIDs = maSinhVien.toString();
-
-            combTSV.removeAllItems();
-            String sql_l = "SELECT TenSinhVien FROM sinhvien "
-                    + "WHERE MaLop LIKE (SELECT MaLop FROM lop WHERE TenLop =  '" + combTL.getItemAt(combTL.getSelectedIndex()) + "')"
-                    + "AND MaSinhVien NOT IN (" + allStudentIDs + ")";
-            ResultSet rs = DataAccess.getResult(sql_l);
-            while (rs.next()) {
-                String TenSinhVien = rs.getString("TenSinhVien"); // Assuming the column name is "TenLHP"            
-                combTSV.addItem(TenSinhVien);
-            }
-        } catch (SQLException e) {
-            // Handle SQL exceptions appropriately (e.g., log the error, display a message to the user)
-            System.err.println("Error retrieving data from database: " + e.getMessage());
-        }
+        resetTenSV_chuaDK();
     }//GEN-LAST:event_combTLActionPerformed
-
-    private void combTSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTSVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combTSVActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-
         try {
-            String tenSV = combTSV.getItemAt(combTSV.getSelectedIndex());
-            String maSV = this.getMaSV(tenSV);
-
-            if (txtDHS1_1.getText().trim().isEmpty()) {
-                txtDHS1_1.setText(" ");
-            }
-            if (txtDHS1_2.getText().trim().isEmpty()) {
-                txtDHS1_2.setText(" ");
-            }
-            if (txtDHS2_1.getText().trim().isEmpty()) {
-                txtDHS2_1.setText(" ");
-            }
-            if (txtDHS2_2.getText().trim().isEmpty()) {
-                txtDHS2_2.setText(" ");
-            }
-            if (txtDTCK.getText().trim().isEmpty()) {
-                txtDTCK.setText(" ");
-            }
-            if (txtDTK.getText().trim().isEmpty()) {
-                txtDTK.setText(" ");
-            }
-            if (txtDTCK_TD4.getText().trim().isEmpty()) {
-                txtDTCK_TD4.setText(" ");
-            }
-
             if (tb_diemlophocphan.getValueAt(0, 0) != null) {
+                String tenSV = combTSV.getItemAt(combTSV.getSelectedIndex());
+                String maSV = this.getMaSV(tenSV);
+
+                if (txtDHS1_1.getText().trim().isEmpty()) {
+                    txtDHS1_1.setText(" ");
+                }
+                if (txtDHS1_2.getText().trim().isEmpty()) {
+                    txtDHS1_2.setText(" ");
+                }
+                if (txtDHS2_1.getText().trim().isEmpty()) {
+                    txtDHS2_1.setText(" ");
+                }
+                if (txtDHS2_2.getText().trim().isEmpty()) {
+                    txtDHS2_2.setText(" ");
+                }
+                if (txtDTCK.getText().trim().isEmpty()) {
+                    txtDTCK.setText(" ");
+                }
+                if (txtDTK.getText().trim().isEmpty()) {
+                    txtDTK.setText(" ");
+                }
+                if (txtDTCK_TD4.getText().trim().isEmpty()) {
+                    txtDTCK_TD4.setText(" ");
+                }
+
+                int index = 0;
+                for (int i = 0; i < this.maSinhVien.length; i++) {
+                    if (this.maSinhVien[i].equals(maSV)) {
+                        index = i;
+                        break; // Exit loop once found
+                    }
+                }
+
+                // thay đỏi điểm của sinh viên
+                this.diemHeSo1_1[index] = txtDHS1_1.getText();
+                this.diemHeSo1_2[index] = txtDHS1_2.getText();
+                this.diemHeSo2_1[index] = txtDHS2_1.getText();
+                this.diemHeSo2_2[index] = txtDHS2_2.getText();
+                this.diemThiCuoiKy[index] = txtDTCK.getText();
+                this.diemTongKet[index] = txtDTK.getText();
+                this.diemTongKet_TD4[index] = txtDTCK_TD4.getText();
+
+                String diemHS1_1 = this.diemHeSo1_1[0];
+                String diemHS1_2 = this.diemHeSo1_2[0];
+                String diemHS2_1 = this.diemHeSo2_1[0];
+                String diemHS2_2 = this.diemHeSo2_2[0];
+                String diemTCK = this.diemThiCuoiKy[0];
+                String diemTK = this.diemTongKet[0];
+                String diemTK_TD4 = this.diemTongKet_TD4[0];
+
+                for (int i = 1; i < this.maSinhVien.length; i++) {
+                    diemHS1_1 += "_" + this.diemHeSo1_1[i];
+                    diemHS1_2 += "_" + this.diemHeSo1_2[i];
+                    diemHS2_1 += "_" + this.diemHeSo2_1[i];
+                    diemHS2_2 += "_" + this.diemHeSo2_2[i];
+                    diemTCK += "_" + this.diemThiCuoiKy[i];
+                    diemTK += "_" + this.diemTongKet[i];
+                    diemTK_TD4 += "_" + this.diemTongKet_TD4[i];
+
+                }
+
                 String sql = "UPDATE diemhocphan SET "
-                        + "MaSinhVien = CASE WHEN MaSinhVien IS NULL OR MaSinhVien = '' THEN '" + maSV + "' ELSE CONCAT(MaSinhVien, '_" + maSV + "') END, "
-                        + "DiemHeSo1_1 = CASE WHEN DiemHeSo1_1 IS NULL OR DiemHeSo1_1 = '' THEN '" + txtDHS1_1.getText() + "' ELSE CONCAT(DiemHeSo1_1, '_" + txtDHS1_1.getText() + "') END, "
-                        + "DiemHeSo1_2 = CASE WHEN DiemHeSo1_2 IS NULL OR DiemHeSo1_2 = '' THEN '" + txtDHS1_2.getText() + "' ELSE CONCAT(DiemHeSo1_2, '_" + txtDHS1_2.getText() + "') END, "
-                        + "DiemHeSo2_1 = CASE WHEN DiemHeSo2_1 IS NULL OR DiemHeSo2_1 = '' THEN '" + txtDHS2_1.getText() + "' ELSE CONCAT(DiemHeSo2_1, '_" + txtDHS2_1.getText() + "') END, "
-                        + "DiemHeSo2_2 = CASE WHEN DiemHeSo2_2 IS NULL OR DiemHeSo2_2 = '' THEN '" + txtDHS2_2.getText() + "' ELSE CONCAT(DiemHeSo2_2, '_" + txtDHS2_2.getText() + "') END, "
-                        + "DiemThiCuoiKy = CASE WHEN DiemThiCuoiKy IS NULL OR DiemThiCuoiKy = '' THEN '" + txtDTCK.getText() + "' ELSE CONCAT(DiemThiCuoiKy, '_" + txtDTCK.getText() + "') END, "
-                        + "DiemTongKet = CASE WHEN DiemTongKet IS NULL OR DiemTongKet = '' THEN '" + txtDTK.getText() + "' ELSE CONCAT(DiemTongKet, '_" + txtDTK.getText() + "') END, "
-                        + "DiemTongKet_TD4 = CASE WHEN DiemTongKet_TD4 IS NULL OR DiemTongKet_TD4 = '' THEN '" + txtDTCK_TD4.getText() + "' ELSE CONCAT(DiemTongKet_TD4, '_" + txtDTCK_TD4.getText() + "') END "
+                        + "DiemHeSo1_1 = '" + diemHS1_1 + "', "
+                        + "DiemHeSo1_2 = '" + diemHS1_2 + "', "
+                        + "DiemHeSo2_1 = '" + diemHS2_1 + "', "
+                        + "DiemHeSo2_2 = '" + diemHS2_2 + "', "
+                        + "DiemThiCuoiKy = '" + diemTCK + "', "
+                        + "DiemTongKet = '" + diemTK + "', "
+                        + "DiemTongKet_TD4 = '" + diemTK_TD4 + "' "
                         + "WHERE MaDiemHocPhan = '" + this.maDienHocPhan + "'";
-                DataAccess.inSertEditDelete(sql);
-
-                sql = "UPDATE lophocphan "
-                        + "SET DanhSachSinhVien = "
-                        + "CASE "
-                        + "WHEN DanhSachSinhVien IS NULL OR DanhSachSinhVien = '' THEN '" + maSV + "' "
-                        + "ELSE CONCAT(DanhSachSinhVien, '_" + maSV + "') "
-                        + "END "
-                        + "WHERE MaLopHocPhan = '" + this.maLopHocPhan + "'";
-                DataAccess.inSertEditDelete(sql);
-
-                sql = "UPDATE sinhvien "
-                        + "SET MaLopHocPhan = "
-                        + "CASE "
-                        + "WHEN MaLopHocPhan IS NULL OR MaLopHocPhan = '' THEN '" + this.maLopHocPhan + "' "
-                        + "ELSE CONCAT(MaLopHocPhan, '_" + this.maLopHocPhan + "') "
-                        + "END "
-                        + "WHERE MaSinhVien = '" + maSV + "'";
                 DataAccess.inSertEditDelete(sql);
 
                 HienThi_tb_diemhocphan();
@@ -442,8 +450,53 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    private void tb_diemlophocphanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_diemlophocphanMouseClicked
+        try {
+            // TODO add your handling code here:
+            String MaSV = (String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 0);
+            String sql_l = "SELECT l.TenLop "
+                    + "FROM lop AS l "
+                    + "JOIN sinhvien as sv ON sv.MaLop = l.MaLop AND sv.MaSinhVien = '" + MaSV + "' "
+                    + "LIMIT 1";
+            ResultSet rs = DataAccess.getResult(sql_l);
+            rs.next();
+            combTL.setSelectedItem(rs.getString(1));
+            combTSV.removeAllItems();
+            combTSV.addItem((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 1));
+            combTSV.setSelectedItem(tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 1));
+            txtDHS1_1.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 2));
+            txtDHS1_2.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 3));
+            txtDHS2_1.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 4));
+            txtDHS2_2.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 5));
+            txtDTCK.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 6));
+            txtDTK.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 7));
+            txtDTCK_TD4.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 8));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_tb_diemlophocphanMouseClicked
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        resetTenSV_chuaDK();
+        combTL.setSelectedItem(0);
+        txtDHS1_1.setText("");
+        txtDHS1_2.setText("");
+        txtDHS2_1.setText("");
+        txtDHS2_2.setText("");
+        txtDTCK.setText("");
+        txtDTK.setText("");
+        txtDTCK_TD4.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaActionPerformed
+
     //JOptionPane.showMessageDialog(null, "maDienHocPhan = " + this.maDienHocPhan, "Notification", JOptionPane.INFORMATION_MESSAGE);
-    private void Them_TenHP_vao_combTL() {
+    private void Them_TenL_vao_combTL() {
 
         // Improved loop using try-with-resources for automatic closing
         try {
@@ -483,14 +536,14 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             rs.next();
 
             if (rs.getString(1) != null) {
-                String[] maSinhVien = rs.getString(1).split("_");
-                String[] diemHeSo1_1 = rs.getString(2).split("_");
-                String[] diemHeSo1_2 = rs.getString(3).split("_");
-                String[] diemHeSo2_1 = rs.getString(4).split("_");
-                String[] diemHeSo2_2 = rs.getString(5).split("_");
-                String[] diemThiCuoiKy = rs.getString(6).split("_");
-                String[] diemTongKet = rs.getString(7).split("_");
-                String[] diemTongKet_TD4 = rs.getString(8).split("_");
+                this.maSinhVien = rs.getString(1).split("_");
+                this.diemHeSo1_1 = rs.getString(2).split("_");
+                this.diemHeSo1_2 = rs.getString(3).split("_");
+                this.diemHeSo2_1 = rs.getString(4).split("_");
+                this.diemHeSo2_2 = rs.getString(5).split("_");
+                this.diemThiCuoiKy = rs.getString(6).split("_");
+                this.diemTongKet = rs.getString(7).split("_");
+                this.diemTongKet_TD4 = rs.getString(8).split("_");
 
                 // lấy tên sinh viên
                 String maSV = "'" + maSinhVien[0] + "'";
@@ -518,7 +571,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                         diemHeSo2_2[i],
                         diemThiCuoiKy[i],
                         diemTongKet[i],
-                        diemTongKet_TD4[i], 
+                        diemTongKet_TD4[i],
                         getTDChu(diemTongKet_TD4[i])
                     };
                     dtm.addRow(objlist);
@@ -532,41 +585,33 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
     }
 
     private String getTDChu(String TKSo) {
-        
+
         if (TKSo.trim().isEmpty()) {
-            return " "; 
-        }  
-        
+            return " ";
+        }
+
         float tkSo = Float.parseFloat(TKSo.trim());
         if (tkSo == 0) {
-            return "F"; 
-        }
-        else if (tkSo == 0.5) {
-            return "F+"; 
-        }
-        else if (tkSo == 1) {
-            return "D"; 
-        }
-        else if (tkSo == 1.5) {
-            return "D+"; 
-        }
-        else if (tkSo == 2) {
-            return "C"; 
-        }
-        else if (tkSo == 2.5) {
-            return "C+"; 
-        }
-        else if (tkSo == 3) {
-            return "B"; 
-        }
-        else if (tkSo == 3.5) {
-            return "B+"; 
-        }
-        else if (tkSo == 4) {
-            return "A"; 
-        }
-        else
+            return "F";
+        } else if (tkSo == 0.5) {
+            return "F+";
+        } else if (tkSo == 1) {
+            return "D";
+        } else if (tkSo == 1.5) {
+            return "D+";
+        } else if (tkSo == 2) {
+            return "C";
+        } else if (tkSo == 2.5) {
+            return "C+";
+        } else if (tkSo == 3) {
+            return "B";
+        } else if (tkSo == 3.5) {
+            return "B+";
+        } else if (tkSo == 4) {
+            return "A";
+        } else {
             return null;
+        }
     }
 
     private ResultSet getdiemHP() throws SQLException {
@@ -575,6 +620,37 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                 + "WHERE MaDiemHocPhan = '" + this.maDienHocPhan + "'"; // Re-throw the SQLException for proper handling
         ResultSet rs = DataAccess.getResult(sql_l);
         return rs;
+    }
+
+    private void resetTenSV_chuaDK() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) tb_diemlophocphan.getModel();
+            int rowCount = model.getRowCount();
+
+            StringBuilder maSinhVien = new StringBuilder();
+            for (int i = 0; i < rowCount; i++) {
+                String maSV = (String) model.getValueAt(i, 0);
+                maSinhVien.append("'" + maSV + "'");
+                if (i < rowCount - 1) {
+                    maSinhVien.append(", ");
+                }
+            }
+
+            String allStudentIDs = maSinhVien.toString();
+
+            combTSV.removeAllItems();
+            String sql_l = "SELECT TenSinhVien FROM sinhvien "
+                    + "WHERE MaLop LIKE (SELECT MaLop FROM lop WHERE TenLop =  '" + combTL.getItemAt(combTL.getSelectedIndex()) + "')"
+                    + "AND MaSinhVien NOT IN (" + allStudentIDs + ")";
+            ResultSet rs = DataAccess.getResult(sql_l);
+            while (rs.next()) {
+                String TenSinhVien = rs.getString("TenSinhVien"); // Assuming the column name is "TenLHP"            
+                combTSV.addItem(TenSinhVien);
+            }
+        } catch (SQLException e) {
+            // Handle SQL exceptions appropriately (e.g., log the error, display a message to the user)
+            System.err.println("Error retrieving data from database: " + e.getMessage());
+        }
     }
 
     /**
@@ -621,6 +697,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;

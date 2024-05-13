@@ -321,6 +321,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             String maDiemHocPhan = this.getMaDHP();
             String maNganh = this.getMaNganh();
             form_ad_diemhocphan dhp = new form_ad_diemhocphan(maDiemHocPhan, maNganh, maLopHocPhan);
+            // this.setVisible(false);
             dhp.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
