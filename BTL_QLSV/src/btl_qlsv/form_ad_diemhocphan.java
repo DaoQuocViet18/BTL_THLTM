@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class form_ad_diemhocphan extends javax.swing.JFrame {
 
+    form_ad_lophocphan ad_LHP;
     String maLopHocPhan;
     String maDienHocPhan;
     String maNganh;
@@ -36,14 +37,16 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
     /**
      * Creates new form form_ad_diemhocphan
      */
-    public form_ad_diemhocphan(String MaDienHocPhan, String maNganh, String maLopHocPhan) {
+    public form_ad_diemhocphan(String MaDienHocPhan, String maNganh, String maLopHocPhan, form_ad_lophocphan ad_LHP) {
         initComponents();
         this.maLopHocPhan = maLopHocPhan;
         this.maDienHocPhan = MaDienHocPhan;
         this.maNganh = maNganh;
-
+        this.ad_LHP = ad_LHP;
+        
         Them_TenL_vao_combTL();
         HienThi_tb_diemhocphan();
+
         // JOptionPane.showMessageDialog(null, "maDienHocPhan = " + this.maDienHocPhan, "Notification", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -293,6 +296,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
+        ad_LHP.Reset();
         this.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
@@ -369,8 +373,8 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        try {
-            if (tb_diemlophocphan.getValueAt(0, 0) != null) {
+        if (tb_diemlophocphan.getValueAt(0, 0) != null) {
+            try {
                 String tenSV = combTSV.getItemAt(combTSV.getSelectedIndex());
                 String maSV = this.getMaSV(tenSV);
 
@@ -444,9 +448,9 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                 DataAccess.inSertEditDelete(sql);
 
                 HienThi_tb_diemhocphan();
+            } catch (SQLException ex) {
+                Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -493,6 +497,107 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
+        if (tb_diemlophocphan.getValueAt(0, 0) != null) {
+            try {
+                String tenSV = combTSV.getItemAt(combTSV.getSelectedIndex());
+                String maSV = this.getMaSV(tenSV);
+
+                // XÓA THÔNG TIN SV TRONG BẢNG diemhocphan
+                String[] newMSV = new String[this.maSinhVien.length - 1];
+                String[] newDHS1_1 = new String[this.diemHeSo1_1.length - 1];
+                String[] newDHS1_2 = new String[this.diemHeSo1_2.length - 1];
+                String[] newDHS2_1 = new String[this.diemHeSo2_1.length - 1];
+                String[] newDHS2_2 = new String[this.diemHeSo2_2.length - 1];
+                String[] newDTCK = new String[this.diemThiCuoiKy.length - 1];
+                String[] newTK = new String[this.diemTongKet.length - 1];
+                String[] newTK_TD4 = new String[this.diemTongKet_TD4.length - 1];
+
+                int j = 0;
+                // thay đỏi điểm của sinh viên
+                for (int i = 0; i < maSinhVien.length; i++) {
+                    if (!this.maSinhVien[i].equals(maSV)) {
+                        newMSV[j] = this.maSinhVien[i];
+                        newDHS1_1[j] = this.diemHeSo1_1[i];
+                        newDHS1_2[j] = this.diemHeSo1_2[i];
+                        newDHS2_1[j] = this.diemHeSo2_1[i];
+                        newDHS2_2[j] = this.diemHeSo2_2[i];
+                        newDTCK[j] = this.diemThiCuoiKy[i];
+                        newTK[j] = this.diemTongKet[i];
+                        newTK_TD4[j] = this.diemTongKet_TD4[i];
+                        j++;
+                    }
+                }
+
+                // chuyển chuỗi thành 1 String
+                String MSV = newMSV[0];
+                String diemHS1_1 = newDHS1_1[0];
+                String diemHS1_2 = newDHS1_2[0];
+                String diemHS2_1 = newDHS2_1[0];
+                String diemHS2_2 = newDHS2_2[0];
+                String diemTCK = newDTCK[0];
+                String diemTK = newTK[0];
+                String diemTK_TD4 = newTK_TD4[0];
+
+                for (int i = 1; i < newMSV.length; i++) {
+                    MSV += "_" + newMSV[i];
+                    diemHS1_1 += "_" + newDHS1_1[i];
+                    diemHS1_2 += "_" + newDHS1_2[i];
+                    diemHS2_1 += "_" + newDHS2_1[i];
+                    diemHS2_2 += "_" + newDHS2_2[i];
+                    diemTCK += "_" + newDTCK[i];
+                    diemTK += "_" + newTK[i];
+                    diemTK_TD4 += "_" + newTK_TD4[i];
+                }
+
+                String sql = "UPDATE diemhocphan SET "
+                        + "MaSinhVien = '" + MSV + "', "
+                        + "DiemHeSo1_1 = '" + diemHS1_1 + "', "
+                        + "DiemHeSo1_2 = '" + diemHS1_2 + "', "
+                        + "DiemHeSo2_1 = '" + diemHS2_1 + "', "
+                        + "DiemHeSo2_2 = '" + diemHS2_2 + "', "
+                        + "DiemThiCuoiKy = '" + diemTCK + "', "
+                        + "DiemTongKet = '" + diemTK + "', "
+                        + "DiemTongKet_TD4 = '" + diemTK_TD4 + "' "
+                        + "WHERE MaDiemHocPhan = '" + this.maDienHocPhan + "'";
+                DataAccess.inSertEditDelete(sql);
+
+                // XÓA THÔNG TIN SV TRONG BẢNG lophocphan
+                sql = "UPDATE lophocphan SET "
+                        + "DanhSachSinhVien = '" + MSV + "' "
+                        + "WHERE MaDiemHocPhan = '" + this.maDienHocPhan + "'";
+                DataAccess.inSertEditDelete(sql);
+
+                // XÓA THÔNG TIN SV TRONG BẢNG sinhvien              
+                sql = "SELECT MaLopHocPhan FROM sinhvien WHERE MaSinhVien = '" + maSV + "' LIMIT 1";
+                ResultSet rs = DataAccess.getResult(sql);
+                rs.next();
+                String[] maLopHocPhan = rs.getString(1).split("_");
+
+                String[] newLHP = new String[maLopHocPhan.length - 1];
+                j = 0;
+                // thay đỏi điểm của sinh viên
+                for (int i = 0; i < maLopHocPhan.length; i++) {
+                    if (!maLopHocPhan[i].equals(this.maLopHocPhan)) {
+                        newLHP[j] = maLopHocPhan[i];
+                        j++;
+                    }
+                }
+
+                String LHP = newLHP[0];
+                for (int i = 1; i < newLHP.length; i++) {
+                    LHP += "_" + newLHP[i];
+                }
+
+                sql = "UPDATE sinhvien SET "
+                        + "MaLopHocPhan = '" + LHP + "' "
+                        + "WHERE MaSinhVien = '" + maSV + "'";
+                DataAccess.inSertEditDelete(sql);
+
+                HienThi_tb_diemhocphan();
+            } catch (SQLException ex) {
+                Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     //JOptionPane.showMessageDialog(null, "maDienHocPhan = " + this.maDienHocPhan, "Notification", JOptionPane.INFORMATION_MESSAGE);

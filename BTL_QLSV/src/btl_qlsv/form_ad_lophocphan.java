@@ -317,10 +317,10 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             // TODO add your handling code here:
             int row = tb_lophocphan.getSelectedRow();
             String maLopHocPhan = (String) tb_lophocphan.getValueAt(row, 0);
-            
+
             String maDiemHocPhan = this.getMaDHP();
             String maNganh = this.getMaNganh();
-            form_ad_diemhocphan dhp = new form_ad_diemhocphan(maDiemHocPhan, maNganh, maLopHocPhan);
+            form_ad_diemhocphan dhp = new form_ad_diemhocphan(maDiemHocPhan, maNganh, maLopHocPhan, this);
             // this.setVisible(false);
             dhp.setVisible(true);
         } catch (SQLException ex) {
@@ -330,10 +330,14 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        Reset();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    public void Reset() {
         txtTLHP.setText("");
         combTHP.setSelectedIndex(0);
         HienThi_tb_lophocphan();
-    }//GEN-LAST:event_btnResetActionPerformed
+    }
 
     /**
      * @param args the command line arguments
