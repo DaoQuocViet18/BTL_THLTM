@@ -15,8 +15,8 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public interface Database_ad {
-    public static class DataAccess {
+
+    public class DataAccess {
 
     public static ResultSet getResult(String sql_l) throws SQLException {
         try {
@@ -26,7 +26,7 @@ public interface Database_ad {
             ResultSet rs = stm.executeQuery(sql_l);
             return rs;
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
         }
     }
@@ -38,9 +38,9 @@ public interface Database_ad {
             Statement stm = kn.createStatement();
             stm.executeUpdate(sql_l);
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
         }
     }    
-}
+
 }

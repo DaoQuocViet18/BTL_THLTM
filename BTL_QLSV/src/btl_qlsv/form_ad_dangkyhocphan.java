@@ -4,7 +4,6 @@
  */
 package btl_qlsv;
 
-import btl_qlsv.Database_ad.DataAccess;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class form_ad_diemhocphan extends javax.swing.JFrame {
+public class form_ad_dangkyhocphan extends javax.swing.JFrame {
 
     form_ad_lophocphan ad_LHP;
     String maLopHocPhan;
@@ -37,7 +36,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
     /**
      * Creates new form form_ad_diemhocphan
      */
-    public form_ad_diemhocphan(String MaDienHocPhan, String maNganh, String maLopHocPhan, form_ad_lophocphan ad_LHP) {
+    public form_ad_dangkyhocphan(String MaDienHocPhan, String maNganh, String maLopHocPhan, form_ad_lophocphan ad_LHP) {
         initComponents();
         this.maLopHocPhan = maLopHocPhan;
         this.maDienHocPhan = MaDienHocPhan;
@@ -50,7 +49,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
         // JOptionPane.showMessageDialog(null, "maDienHocPhan = " + this.maDienHocPhan, "Notification", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private form_ad_diemhocphan() {
+    private form_ad_dangkyhocphan() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -362,7 +361,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                 HienThi_tb_diemhocphan();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_dangkyhocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -449,7 +448,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
 
                 HienThi_tb_diemhocphan();
             } catch (SQLException ex) {
-                Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(form_ad_dangkyhocphan.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -477,7 +476,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             txtDTCK_TD4.setText((String) tb_diemlophocphan.getValueAt(tb_diemlophocphan.getSelectedRow(), 8));
 
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_dangkyhocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_tb_diemlophocphanMouseClicked
@@ -595,7 +594,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
 
                 HienThi_tb_diemhocphan();
             } catch (SQLException ex) {
-                Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(form_ad_dangkyhocphan.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -614,7 +613,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             // Handle SQL exceptions appropriately (e.g., log the error, display a message to the user)
-            System.err.println("Error retrieving data from database: " + e.getMessage());
+            System.err.println("Error retrieving data from DataAccess: " + e.getMessage());
         }
     }
 
@@ -628,7 +627,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             rs.next();
             return rs.getString(1);
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
         }
     }
@@ -685,7 +684,7 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_diemhocphan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_dangkyhocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -776,27 +775,28 @@ public class form_ad_diemhocphan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(form_ad_diemhocphan.class
+            java.util.logging.Logger.getLogger(form_ad_dangkyhocphan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(form_ad_diemhocphan.class
+            java.util.logging.Logger.getLogger(form_ad_dangkyhocphan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(form_ad_diemhocphan.class
+            java.util.logging.Logger.getLogger(form_ad_dangkyhocphan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(form_ad_diemhocphan.class
+            java.util.logging.Logger.getLogger(form_ad_dangkyhocphan.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new form_ad_diemhocphan().setVisible(true);
+                new form_ad_dangkyhocphan().setVisible(true);
             }
         });
     }

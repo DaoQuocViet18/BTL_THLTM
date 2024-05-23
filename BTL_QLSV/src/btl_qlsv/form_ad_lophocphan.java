@@ -4,7 +4,6 @@
  */
 package btl_qlsv;
 
-import btl_qlsv.Database_ad.DataAccess;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -67,13 +66,13 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
         tb_lophocphan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã lớp học phần", "Tên lớp học phần", "Tên học phần", "Sĩ số", "Danh sách SV"
+                "Mã lớp học phần", "Tên lớp học phần", "Tên học phần", "Sĩ số"
             }
         ));
         tb_lophocphan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -320,7 +319,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
             String maDiemHocPhan = this.getMaDHP();
             String maNganh = this.getMaNganh();
-            form_ad_diemhocphan dhp = new form_ad_diemhocphan(maDiemHocPhan, maNganh, maLopHocPhan, this);
+            form_ad_dangkyhocphan dhp = new form_ad_dangkyhocphan(maDiemHocPhan, maNganh, maLopHocPhan, this);
             // this.setVisible(false);
             dhp.setVisible(true);
         } catch (SQLException ex) {
@@ -376,7 +375,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 
     private void HienThi_tb_lophocphan() {
         try {
-            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, lhp.SiSo, lhp.DanhSachSinhVien "
+            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan "
                     + "FROM lophocphan as lhp "
                     + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan ";
             ResultSet rs = DataAccess.getResult(sql_l);
@@ -387,8 +386,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5)
+                    siSo(rs.getString(1))
                 };
                 dtm.addRow(objlist);
             }
@@ -397,6 +395,15 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private int siSo(String MaLopHocPhan) throws SQLException {
+        String sql_l = "SELECT count(*) "
+                    + "FROM dangkyhocphan "
+                    + "WHERE MaLopHocPhan = '" + MaLopHocPhan + "' ";
+            ResultSet rs = DataAccess.getResult(sql_l);
+            rs.next();
+            return rs.getInt(1);
     }
 
     private void Them_TenHP_vao_combTHP() {
@@ -411,7 +418,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             // Handle SQL exceptions appropriately (e.g., log the error, display a message to the user)
-            System.err.println("Error retrieving data from database: " + e.getMessage());
+            System.err.println("Error retrieving data from DataAccess: " + e.getMessage());
         }
     }
 
@@ -424,7 +431,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             rs.next();
             return rs.getString(1);
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
         }
     }
@@ -443,7 +450,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             rs.next();
             return rs.getString("MaDiemHocPhan");
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
         }
     }
@@ -462,7 +469,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             rs.next();
             return rs.getString("MaNganh");
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;  // Re-throw the SQLException for proper handling
         }
     }
