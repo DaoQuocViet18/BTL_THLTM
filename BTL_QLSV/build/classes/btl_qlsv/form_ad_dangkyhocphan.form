@@ -26,79 +26,80 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="559" max="-2" attributes="0"/>
-                      <Component id="btnTimKiem" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
+                  <Component id="jScrollPane1" pref="811" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="811" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel7" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
-                                                  <Component id="jLabel4" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
-                                                  <Component id="jLabel1" alignment="0" pref="160" max="32767" attributes="0"/>
-                                                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jLabel10" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtDTK" min="-2" pref="312" max="-2" attributes="0"/>
-                                          <Component id="txtDTCK_TD4" min="-2" pref="312" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="combTL" min="-2" pref="311" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="txtDHS1_2" alignment="0" pref="312" max="32767" attributes="0"/>
-                                                      <Component id="txtDHS2_1" alignment="0" pref="312" max="32767" attributes="0"/>
-                                                      <Component id="txtDHS2_2" alignment="0" pref="312" max="32767" attributes="0"/>
-                                                      <Component id="txtDTCK" alignment="0" pref="312" max="32767" attributes="0"/>
-                                                      <Component id="txtDHS1_1" alignment="0" pref="312" max="32767" attributes="0"/>
-                                                      <Component id="combTSV" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="btnReset" min="-2" pref="72" max="-2" attributes="0"/>
-                                                  <Component id="btnSua" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnXoa" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnThem" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel7" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="jLabel4" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="jLabel1" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jLabel10" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txtTKT" min="-2" pref="312" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtDTK" min="-2" pref="312" max="-2" attributes="0"/>
+                          <Component id="txtDTCK_TD4" min="-2" pref="312" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="combTL" min="-2" pref="311" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtDHS1_2" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                      <Component id="txtDHS2_1" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                      <Component id="txtDHS2_2" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                      <Component id="txtDTCK" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                      <Component id="txtDHS1_1" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
+                                      <Component id="combTSV" min="-2" pref="312" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtMDKHP" alignment="1" min="-2" pref="311" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnReset" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="btnSua" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnXoa" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnThem" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="txtTKT" min="-2" pref="312" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="btnTimKiem" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="173" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtMDKHP" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="combTL" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -246,6 +247,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDTK">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -253,6 +259,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDTCK_TD4">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -266,10 +277,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tb_diemlophocphan">
+        <Component class="javax.swing.JTable" name="tb_dangkylophocphan">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="4">
+              <Table columnCount="11" rowCount="4">
+                <Column editable="true" title="M&#xe3; DKHP" type="java.lang.Object"/>
                 <Column editable="true" title="M&#xe3; SV" type="java.lang.Object"/>
                 <Column editable="true" title="T&#xea;n SV" type="java.lang.Object"/>
                 <Column editable="true" title="&#x110;i&#x1ec3;m hs 1-1" type="java.lang.Object"/>
@@ -334,6 +346,11 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -341,7 +358,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_diemlophocphanMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_dangkylophocphanMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -389,6 +406,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="M&#xe3; DKHP"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtMDKHP">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

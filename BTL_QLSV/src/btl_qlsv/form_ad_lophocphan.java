@@ -210,16 +210,8 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             rs.next();
             int MaLopHocPhan = rs.getInt(1) + 1;
 
-            sql_l = "SELECT Count(*) FROM diemhocphan";
-            rs = DataAccess.getResult(sql_l);
-            rs.next();
-            int MaDiemHocPhan = rs.getInt(1) + 1;
-
-            sql_l = "INSERT INTO diemhocphan(MaDiemHocPhan) VALUES ('DHP" + MaDiemHocPhan + "')";
-            DataAccess.inSertEditDelete(sql_l);
-
-            sql_l = "INSERT INTO lophocphan (MaLopHocPhan, TenLopHocPhan, MaHocPhan, MaDiemHocPhan) "
-                    + "VALUES ('LHP" + MaLopHocPhan + "', '" + tenLopHocPhan + "', '" + maHocPhan + "', 'DHP" + MaDiemHocPhan + "')";
+            sql_l = "INSERT INTO lophocphan (MaLopHocPhan, TenLopHocPhan, MaHocPhan) "
+                    + "VALUES ('LHP" + MaLopHocPhan + "', '" + tenLopHocPhan + "', '" + maHocPhan + "')";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
             HienThi_tb_lophocphan();
@@ -262,12 +254,9 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             int row = tb_lophocphan.getSelectedRow();
             String maLopHocPhan = (String) tb_lophocphan.getValueAt(row, 0);
 
-            String maDiemHocPhan = this.getMaDHP();
             String sql_l = "DELETE FROM lophocphan WHERE MaLopHocPhan = '" + maLopHocPhan + "' ";
             DataAccess.inSertEditDelete(sql_l);
 
-            sql_l = "DELETE FROM diemhocphan WHERE MaDiemHocPhan = '" + maDiemHocPhan + "' ";
-            DataAccess.inSertEditDelete(sql_l);
             HienThi_tb_lophocphan();
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan.class.getName()).log(Level.SEVERE, null, ex);
@@ -287,7 +276,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
 //                    + "INSTR(lhp.SiSo, '" + txtTKT.getText() + "') > 0 OR "
 //                    + "INSTR(lhp.DanhSachSinhVien, '" + txtTKT.getText() + "') > 0";
 
-            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, lhp.SiSo, lhp.DanhSachSinhVien "
+            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan "
                     + "FROM lophocphan as lhp "
                     + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan "
                     + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
@@ -300,8 +289,7 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5)
+                    siSo(rs.getString(1))
                 };
                 dtm.addRow(objlist);
             }
@@ -314,12 +302,14 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
     private void btnChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietActionPerformed
         try {
             // TODO add your handling code here:
+            if (!Ktra_txt_comb()) {
+                return;
+            }
             int row = tb_lophocphan.getSelectedRow();
             String maLopHocPhan = (String) tb_lophocphan.getValueAt(row, 0);
 
-            String maDiemHocPhan = this.getMaDHP();
             String maNganh = this.getMaNganh();
-            form_ad_dangkyhocphan dhp = new form_ad_dangkyhocphan(maDiemHocPhan, maNganh, maLopHocPhan, this);
+            form_ad_dangkyhocphan dhp = new form_ad_dangkyhocphan(maNganh, maLopHocPhan, this);
             // this.setVisible(false);
             dhp.setVisible(true);
         } catch (SQLException ex) {
@@ -436,25 +426,6 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
         }
     }
 
-    private String getMaDHP() throws SQLException {
-        try {
-            int row = tb_lophocphan.getSelectedRow();
-
-            String maLopHocPhan = tb_lophocphan.getValueAt(row, 0).toString();
-
-            String sql_l = "SELECT MaDiemHocPhan "
-                    + "FROM lophocphan "
-                    + "WHERE MaLopHocPhan = '" + maLopHocPhan + "' "
-                    + "LIMIT 1";
-            ResultSet rs = DataAccess.getResult(sql_l);
-            rs.next();
-            return rs.getString("MaDiemHocPhan");
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;  // Re-throw the SQLException for proper handling
-        }
-    }
-
     private String getMaNganh() throws SQLException {
         try {
             int row = tb_lophocphan.getSelectedRow();
@@ -485,22 +456,28 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
     }
 
     private boolean Ktra_txt_comb() {
-        String str_Ktra = txtTLHP.getText();
-        if (str_Ktra.trim().equals("")) {
-            String txtCanhBao = "Vui lòng nhập lại tên lớp học phần!";
+        if (tb_lophocphan.getSelectedRow() < 0) {
+            String txtCanhBao = "Vui lòng chọn lớp học phần trong bảng !";
             HienThiThongBao_Thieu(txtCanhBao);
-            txtTLHP.setText("");
-            txtTLHP.requestFocus();
             return false;
         }
-
-        str_Ktra = (String) combTHP.getSelectedItem();
-        if (str_Ktra.trim().equals("")) {
-            String txtCanhBao = "Vui lòng nhập lại tên học phần!";
-            HienThiThongBao_Thieu(txtCanhBao);
-            combTHP.requestFocus();
-            return false;
-        }
+        
+//        String str_Ktra = txtTLHP.getText();
+//        if (str_Ktra.trim().equals("")) {
+//            String txtCanhBao = "Vui lòng nhập lại tên lớp học phần!";
+//            HienThiThongBao_Thieu(txtCanhBao);
+//            txtTLHP.setText("");
+//            txtTLHP.requestFocus();
+//            return false;
+//        }
+//
+//        str_Ktra = (String) combTHP.getSelectedItem();
+//        if (str_Ktra.trim().equals("")) {
+//            String txtCanhBao = "Vui lòng nhập lại tên học phần!";
+//            HienThiThongBao_Thieu(txtCanhBao);
+//            combTHP.requestFocus();
+//            return false;
+//        }
         return true;
     }
 
