@@ -4,8 +4,6 @@
  */
 package btl_qlsv;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author Admin
@@ -17,9 +15,6 @@ public class form_ad_main extends javax.swing.JFrame {
      */
     public form_ad_main() {
         initComponents();
-        JFrame svForm = new form_ad_sinhvien();
-        svForm.setContentPane(jPanel1);
-        svForm.setVisible(true);
     }
 
     /**
@@ -32,54 +27,163 @@ public class form_ad_main extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        btnKhoa = new javax.swing.JButton();
+        btnNganh = new javax.swing.JButton();
+        btnLop = new javax.swing.JButton();
+        btnSinhVien = new javax.swing.JButton();
+        btnLopHocPhan = new javax.swing.JButton();
+        btnHocPhan = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        btnKhoa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnKhoa.setText("Khoa");
+        btnKhoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhoaActionPerformed(evt);
+            }
+        });
+
+        btnNganh.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnNganh.setText("Ngành");
+        btnNganh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNganhActionPerformed(evt);
+            }
+        });
+
+        btnLop.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnLop.setText("Lớp");
+        btnLop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLopActionPerformed(evt);
+            }
+        });
+
+        btnSinhVien.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnSinhVien.setText("Sinh viên");
+        btnSinhVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSinhVienActionPerformed(evt);
+            }
+        });
+
+        btnLopHocPhan.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnLopHocPhan.setText("Lớp học phần");
+        btnLopHocPhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLopHocPhanActionPerformed(evt);
+            }
+        });
+
+        btnHocPhan.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnHocPhan.setText("Học phần");
+        btnHocPhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHocPhanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 757, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNganh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLopHocPhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHocPhan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 438, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnNganh, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLop, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnHocPhan, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLopHocPhan, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
-        jMenu4.setText("File");
-        jMenuBar2.add(jMenu4);
-
-        jMenu5.setText("Edit");
-        jMenuBar2.add(jMenu5);
-
-        jMenu6.setText("jMenu6");
-        jMenuBar2.add(jMenu6);
-
-        setJMenuBar(jMenuBar2);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 579, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHocPhanActionPerformed
+        // TODO add your handling code here:\
+        form_ad_hocphan form = new form_ad_hocphan();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnHocPhanActionPerformed
+
+    private void btnKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaActionPerformed
+        // TODO add your handling code here:
+        form_ad_khoa form = new form_ad_khoa();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnKhoaActionPerformed
+
+    private void btnNganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNganhActionPerformed
+        // TODO add your handling code here:
+        form_ad_nganh form = new form_ad_nganh();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnNganhActionPerformed
+
+    private void btnLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLopActionPerformed
+        // TODO add your handling code here:
+        form_ad_lop form = new form_ad_lop();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnLopActionPerformed
+
+    private void btnSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSinhVienActionPerformed
+        // TODO add your handling code here:
+        form_ad_sinhvien form = new form_ad_sinhvien();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnSinhVienActionPerformed
+
+    private void btnLopHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLopHocPhanActionPerformed
+        // TODO add your handling code here:
+        form_ad_lophocphan form = new form_ad_lophocphan();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnLopHocPhanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,10 +221,13 @@ public class form_ad_main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JButton btnHocPhan;
+    private javax.swing.JButton btnKhoa;
+    private javax.swing.JButton btnLop;
+    private javax.swing.JButton btnLopHocPhan;
+    private javax.swing.JButton btnNganh;
+    private javax.swing.JButton btnSinhVien;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

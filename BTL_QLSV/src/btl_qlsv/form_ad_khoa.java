@@ -4,6 +4,12 @@
  */
 package btl_qlsv;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -32,24 +38,53 @@ public class form_ad_khoa extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnXoa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtTN = new javax.swing.JTextField();
+        txtMaKhoa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_khoa = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        txtTKT = new javax.swing.JTextField();
-        txtTTK = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
+        txtTruongKhoa = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtTenKhoa = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DANH SÁCH THÔNG TIN KHOA");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Tên trưởng khoa:");
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Tên khoa:");
 
@@ -64,72 +99,298 @@ public class form_ad_khoa extends javax.swing.JFrame {
                 "Mã khoa", "Tên khoa", "Tên trưởng khoa"
             }
         ));
+        tb_khoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_khoaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_khoa);
 
-        jLabel5.setText("Tìm kiếm theo:");
+        jLabel5.setText("Tìm kiếm theo mã:");
+
+        jLabel4.setText("Mã khoa:");
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTKT, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtTN, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(38, 38, 38)
-                                    .addComponent(txtTTK, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(30, 30, 30)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(txtTenKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnTimKiem))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTruongKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMaKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSua)
                             .addComponent(btnXoa)
-                            .addComponent(btnThem)
-                            .addComponent(btnTimKiem))
-                        .addGap(0, 87, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(btnThem))
+                        .addGap(40, 40, 40))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(39, 39, 39))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnThem)
-                        .addGap(20, 20, 20)
-                        .addComponent(btnSua))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(txtTTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(btnXoa)
-                .addGap(26, 26, 26)
+                    .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtMaKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSua)
+                    .addComponent(jLabel2)
+                    .addComponent(txtTenKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXoa)
+                    .addComponent(txtTruongKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(txtTKT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiem))
-                .addGap(44, 44, 44)
+                    .addComponent(btnTimKiem)
+                    .addComponent(btnReset))
+                .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loadDataToTable() {
+        try {
+            // TODO add your handling code here:
+            Connection kn = KetNoi.KNCSDL();
+            String sql = "select * from khoa";
+            Statement stm = kn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            DefaultTableModel dtm = (DefaultTableModel) tb_khoa.getModel();
+            dtm.setRowCount(0);
+            while (rs.next()) {
+                Object objliss[] = {
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3)
+                };
+                dtm.addRow(objliss);
+                tb_khoa.setModel(dtm);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        loadDataToTable();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void tb_khoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_khoaMouseClicked
+        // TODO add your handling code here:
+        int row = tb_khoa.getSelectedRow();
+        // lấy giá trị của bảng
+        String makhoa = tb_khoa.getValueAt(row, 0).toString();
+        String tenkhoa = tb_khoa.getValueAt(row, 1).toString();
+        String truongkhoa = tb_khoa.getValueAt(row, 2).toString();
+        // đổ vào các text
+        txtMaKhoa.setText(makhoa);
+        txtTenKhoa.setText(tenkhoa);
+        txtTruongKhoa.setText(truongkhoa);
+    }//GEN-LAST:event_tb_khoaMouseClicked
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        String st = "";
+        txtMaKhoa.setText(st);
+        txtTenKhoa.setText(st);
+        txtTruongKhoa.setText(st);
+        txtTimKiem.setText(st);
+        loadDataToTable();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // Kiểm tra xem các trường thông tin đã được nhập đầy đủ chưa
+        if (txtMaKhoa.getText().isEmpty() || txtTenKhoa.getText().isEmpty() || txtTruongKhoa.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin vào các trường!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            // Tìm trường đầu tiên chưa được nhập và trỏ đến đó
+            if (txtMaKhoa.getText().isEmpty()) {
+                txtMaKhoa.requestFocus();
+            } else if (txtTenKhoa.getText().isEmpty()) {
+                txtTenKhoa.requestFocus();
+            } else {
+                txtTruongKhoa.requestFocus();
+            }
+            return; // Không thực hiện thêm nếu thông tin còn thiếu
+        }
+
+        // Lấy mã khoa từ textfield
+        String makhoa = txtMaKhoa.getText();
+        try {
+            // Kiểm tra xem mã khoa đã tồn tại hay chưa
+            Connection kn = KetNoi.KNCSDL();
+            String checkSql = "SELECT MaKhoa FROM khoa WHERE MaKhoa = ?";
+            PreparedStatement checkPst = kn.prepareStatement(checkSql);
+            checkPst.setString(1, makhoa);
+            ResultSet rs = checkPst.executeQuery();
+            if (rs.next()) {
+                // Nếu mã khoa đã tồn tại, hiển thị thông báo và trỏ đến ô mã khoa
+                JOptionPane.showMessageDialog(this, "Mã khoa đã tồn tại! Vui lòng nhập lại.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                txtMaKhoa.requestFocus();
+            } else {
+                // Nếu mã khoa chưa tồn tại, thực hiện thêm vào cơ sở dữ liệu
+                String tenkhoa = txtTenKhoa.getText();
+                String truongkhoa = txtTruongKhoa.getText();
+                String sql = "INSERT INTO khoa VALUES (?, ?, ?)";
+                PreparedStatement pst = kn.prepareStatement(sql);
+                pst.setString(1, makhoa);
+                pst.setString(2, tenkhoa);
+                pst.setString(3, truongkhoa);
+                int result = pst.executeUpdate();
+
+                if (result > 0) {
+                    // Nếu thêm thành công, hiển thị thông báo và làm mới bảng dữ liệu
+                    JOptionPane.showMessageDialog(this, "Đã thêm thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    // Nếu thêm không thành công, hiển thị thông báo lỗi
+                    JOptionPane.showMessageDialog(this, "Thêm không thành công!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        String makhoa = txtMaKhoa.getText();
+        String tenkhoa = txtTenKhoa.getText();
+        String truongkhoa = txtTruongKhoa.getText();
+
+        try {
+            Connection kn = KetNoi.KNCSDL();
+            // Kiểm tra xem tên khoa và tên trưởng khoa có thay đổi so với dữ liệu hiện tại không
+            String sqlCheck = "SELECT TenKhoa, TenTruongKhoa FROM khoa WHERE MaKhoa = '" + makhoa + "'";
+            Statement stmCheck = kn.createStatement();
+            ResultSet rsCheck = stmCheck.executeQuery(sqlCheck);
+
+            if (rsCheck.next()) {
+                String tenkhoaDB = rsCheck.getString("TenKhoa");
+                String truongkhoaDB = rsCheck.getString("TenTruongKhoa");
+                if (tenkhoa.equals(tenkhoaDB) && truongkhoa.equals(truongkhoaDB)) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng thay đổi thông tin trước khi sửa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                    return; // Không thực hiện sửa nếu thông tin không thay đổi
+                }
+            }
+
+            // Kiểm tra xem tên khoa và tên trưởng khoa có trùng với dữ liệu hiện tại không
+            String sqlCheckDuplicate = "SELECT * FROM khoa WHERE (TenKhoa = '" + tenkhoa + "' OR TenTruongKhoa = '" + truongkhoa + "') AND MaKhoa != '" + makhoa + "'";
+            Statement stmCheckDuplicate = kn.createStatement();
+            ResultSet rsCheckDuplicate = stmCheckDuplicate.executeQuery(sqlCheckDuplicate);
+            if (rsCheckDuplicate.next()) {
+                // Tên khoa hoặc tên trưởng khoa đã tồn tại, yêu cầu nhập lại
+                JOptionPane.showMessageDialog(this, "Tên khoa hoặc tên trưởng khoa đã tồn tại. Vui lòng nhập lại!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                return; // Không thực hiện sửa nếu tên khoa hoặc tên trưởng khoa bị trùng
+            }
+
+            // Hiện thông báo xác nhận sửa
+            int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa thông tin này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                String sqlUpdate = "UPDATE khoa SET TenKhoa = '" + tenkhoa + "', TenTruongKhoa = '" + truongkhoa + "' WHERE MaKhoa = '" + makhoa + "'";
+                Statement stmUpdate = kn.createStatement();
+                stmUpdate.executeUpdate(sqlUpdate);
+                JOptionPane.showMessageDialog(this, "Đã sửa thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                loadDataToTable();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        String makhoa = txtMaKhoa.getText();
+
+        try {
+            Connection kn = KetNoi.KNCSDL();
+            int choice = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                String sqlDelete = "DELETE FROM khoa WHERE MaKhoa = '" + makhoa + "'";
+                Statement stmDelete = kn.createStatement();
+                stmDelete.executeUpdate(sqlDelete);
+                JOptionPane.showMessageDialog(this, "Đã xóa thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                loadDataToTable();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        String makhoa = txtTimKiem.getText();
+
+        try {
+            Connection kn = KetNoi.KNCSDL();
+            // Tìm kiếm thông tin theo mã khoa
+            String sqlSearch = "SELECT * FROM khoa WHERE MaKhoa = '" + makhoa + "'";
+            Statement stmSearch = kn.createStatement();
+            ResultSet rsSearch = stmSearch.executeQuery(sqlSearch);
+
+            if (rsSearch.next()) {
+                // Nếu tìm thấy thông tin, hiển thị lên các textfield
+                txtMaKhoa.setText(rsSearch.getString("MaKhoa"));
+                txtTenKhoa.setText(rsSearch.getString("TenKhoa"));
+                txtTruongKhoa.setText(rsSearch.getString("TenTruongKhoa"));
+                // Xác định hàng chứa dữ liệu tìm kiếm trong bảng
+                int rowIndex = -1;
+                while (rsSearch.next()) {
+                    rowIndex = rsSearch.getRow() - 1;
+                }
+                // Nếu rowIndex >= 0, tức là đã tìm thấy dữ liệu trong bảng, thì bôi đen dòng đó
+                if (rowIndex >= 0) {
+                    tb_khoa.setRowSelectionInterval(rowIndex, rowIndex);
+                    tb_khoa.scrollRectToVisible(tb_khoa.getCellRect(rowIndex, 0, true));
+                }
+            } else {
+                // Nếu không tìm thấy thông tin, hiển thị thông báo không có mã cần tìm
+                JOptionPane.showMessageDialog(this, "Không có mã khoa cần tìm!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                // Xóa nội dung trong các textfield
+                txtMaKhoa.setText("");
+                txtTenKhoa.setText("");
+                txtTruongKhoa.setText("");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +418,9 @@ public class form_ad_khoa extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(form_ad_khoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -167,17 +431,20 @@ public class form_ad_khoa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb_khoa;
-    private javax.swing.JTextField txtTKT;
-    private javax.swing.JTextField txtTN;
-    private javax.swing.JTextField txtTTK;
+    private javax.swing.JTextField txtMaKhoa;
+    private javax.swing.JTextField txtTenKhoa;
+    private javax.swing.JTextField txtTimKiem;
+    private javax.swing.JTextField txtTruongKhoa;
     // End of variables declaration//GEN-END:variables
 }
