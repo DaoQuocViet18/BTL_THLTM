@@ -318,9 +318,17 @@ public class form_ad_dangkyhocphan extends javax.swing.JFrame {
             rs.next();
             int MaDangKyHocPhan = rs.getInt(1) + 1;
 
+            String MaDKHP = "";
+            if (MaDangKyHocPhan < 10) {
+                MaDKHP = "0" + MaDangKyHocPhan;
+            }
+            else
+                MaDKHP += MaDangKyHocPhan;
+            
+            
             sql = "INSERT INTO `dangkyhocphan`(`MaDangKyHocPhan`, `MaSinhVien`, `MaLopHocPhan`, `DiemHeSo1_1`, `DiemHeSo1_2`, `DiemHeSo2_1`, `DiemHeSo2_2`, `DiemThiCuoiKy`, `DiemTongKet`, `DiemTongKet_TD4`) "
                     + "VALUES "
-                    + "('DKHP" + MaDangKyHocPhan + "', "
+                    + "('DKHP" + MaDKHP + "', "
                     + "'" + maSV + "', "
                     + "'" + this.maLopHocPhan + "', "
                     + "CASE WHEN " + this.txtDHS1_1.getText().trim().isEmpty() + " IS false THEN '" + this.txtDHS1_1.getText() + "' ELSE NULL END, "

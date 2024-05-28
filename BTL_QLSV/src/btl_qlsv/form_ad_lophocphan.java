@@ -210,8 +210,15 @@ public class form_ad_lophocphan extends javax.swing.JFrame {
             rs.next();
             int MaLopHocPhan = rs.getInt(1) + 1;
 
+            String MaLHP = "";
+            if (MaLopHocPhan < 10) {
+                MaLHP = "0" + MaLopHocPhan;
+            }
+            else
+                MaLHP += MaLopHocPhan;
+            
             sql_l = "INSERT INTO lophocphan (MaLopHocPhan, TenLopHocPhan, MaHocPhan) "
-                    + "VALUES ('LHP" + MaLopHocPhan + "', '" + tenLopHocPhan + "', '" + maHocPhan + "')";
+                    + "VALUES ('LHP" + MaLHP + "', '" + tenLopHocPhan + "', '" + maHocPhan + "')";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
             HienThi_tb_lophocphan();
