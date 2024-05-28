@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package btl_qlsv;
 
@@ -11,17 +11,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Admin
  */
-public class form_ad_nganh extends javax.swing.JFrame {
+public class form_ad_nganh_JPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form form_ad_nganh
+     * Creates new form form_ad_nganh_JPanel
      */
-    public form_ad_nganh() {
+    public form_ad_nganh_JPanel() {
         initComponents();
         loadComboBox(); // Load danh sách Tên khoa vào combobox
         loadDataToTable();
@@ -37,7 +36,7 @@ public class form_ad_nganh extends javax.swing.JFrame {
                 comboTenKhoa.addItem(rs.getString("TenKhoa"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_nganh.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_nganh_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -60,11 +59,10 @@ public class form_ad_nganh extends javax.swing.JFrame {
                 model.addRow(new Object[]{maNganh, tenNganh, tenKhoa});
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_nganh.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_nganh_JPanel.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Lỗi khi lấy dữ liệu từ cơ sở dữ liệu!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +72,13 @@ public class form_ad_nganh extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnTimKiem = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtMaNganh = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtTenNganh = new javax.swing.JTextField();
@@ -82,45 +87,6 @@ public class form_ad_nganh extends javax.swing.JFrame {
         tb_nganh = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
-        btnTimKiem = new javax.swing.JButton();
-        btnThem = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
-        btnXoa = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtMaNganh = new javax.swing.JTextField();
-        btnReset = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("DANH SÁCH THÔNG TIN NGÀNH");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
-
-        jLabel2.setText("Tên ngành:");
-
-        jLabel3.setText("Tên khoa:");
-
-        tb_nganh.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Mã ngành", "Tên ngành", "Tên khoa"
-            }
-        ));
-        tb_nganh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tb_nganhMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tb_nganh);
-
-        jLabel5.setText("Tìm kiếm theo ma:");
 
         btnTimKiem.setText("Tìm kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
@@ -159,34 +125,62 @@ public class form_ad_nganh extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        jLabel2.setText("Tên ngành:");
+
+        jLabel3.setText("Tên khoa:");
+
+        tb_nganh.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Mã ngành", "Tên ngành", "Tên khoa"
+            }
+        ));
+        tb_nganh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_nganhMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_nganh);
+
+        jLabel5.setText("Tìm kiếm theo ma:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMaNganh, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTenNganh, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboTenKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMaNganh, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTenNganh, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboTenKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTimKiem)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTimKiem)))
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSua)
-                    .addComponent(btnXoa)
-                    .addComponent(btnThem)
-                    .addComponent(btnReset))
-                .addContainerGap(62, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSua)
+                            .addComponent(btnXoa)
+                            .addComponent(btnThem)
+                            .addComponent(btnReset))
+                        .addGap(32, 32, 32))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,43 +206,41 @@ public class form_ad_nganh extends javax.swing.JFrame {
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiem)
                     .addComponent(btnReset))
-                .addGap(18, 21, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        String maNganh = txtMaNganh.getText();
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+        String maNganh = txtTimKiem.getText();
 
         try {
             Connection kn = KetNoi.KNCSDL();
-            String sql = "DELETE FROM nganh WHERE MaNganh = ?";
-            PreparedStatement pst = kn.prepareStatement(sql);
+
+            String sqlSearch = "SELECT nganh.MaNganh, nganh.TenNganh, khoa.TenKhoa "
+            + "FROM nganh INNER JOIN khoa ON nganh.MaKhoa = khoa.MaKhoa "
+            + "WHERE nganh.MaNganh = ?";
+            PreparedStatement pst = kn.prepareStatement(sqlSearch);
             pst.setString(1, maNganh);
+            ResultSet rs = pst.executeQuery();
 
-            int result = pst.executeUpdate();
-            if (result > 0) {
-                JOptionPane.showMessageDialog(this, "Đã xóa ngành thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            if (rs.next()) {
+                // Hiển thị thông tin lên các textfield và combobox
+                txtMaNganh.setText(rs.getString("MaNganh"));
+                txtTenNganh.setText(rs.getString("TenNganh"));
+                comboTenKhoa.setSelectedItem(rs.getString("TenKhoa")); // Ánh xạ tên khoa lên combobox
             } else {
-                JOptionPane.showMessageDialog(this, "Xóa ngành không thành công!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Không có mã ngành cần tìm!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                txtMaNganh.setText("");
+                txtTenNganh.setText("");
+                comboTenKhoa.setSelectedIndex(-1);
             }
-
-            loadDataToTable();
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_nganh.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_nganh_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnXoaActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // Xóa dữ liệu trong tất cả các textfield và combobox
-        txtMaNganh.setText("");
-        txtTenNganh.setText("");
-        comboTenKhoa.setSelectedIndex(0);
-        txtTimKiem.setText("");
-    }//GEN-LAST:event_btnResetActionPerformed
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // Lấy thông tin từ các textfield và combobox
@@ -285,7 +277,7 @@ public class form_ad_nganh extends javax.swing.JFrame {
                 loadDataToTable();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_nganh.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_nganh_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -311,39 +303,39 @@ public class form_ad_nganh extends javax.swing.JFrame {
             }
             loadDataToTable();
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_nganh.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_nganh_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
-    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
-        String maNganh = txtTimKiem.getText();
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        String maNganh = txtMaNganh.getText();
 
         try {
             Connection kn = KetNoi.KNCSDL();
-
-            String sqlSearch = "SELECT nganh.MaNganh, nganh.TenNganh, khoa.TenKhoa "
-                    + "FROM nganh INNER JOIN khoa ON nganh.MaKhoa = khoa.MaKhoa "
-                    + "WHERE nganh.MaNganh = ?";
-            PreparedStatement pst = kn.prepareStatement(sqlSearch);
+            String sql = "DELETE FROM nganh WHERE MaNganh = ?";
+            PreparedStatement pst = kn.prepareStatement(sql);
             pst.setString(1, maNganh);
-            ResultSet rs = pst.executeQuery();
 
-            if (rs.next()) {
-                // Hiển thị thông tin lên các textfield và combobox
-                txtMaNganh.setText(rs.getString("MaNganh"));
-                txtTenNganh.setText(rs.getString("TenNganh"));
-                comboTenKhoa.setSelectedItem(rs.getString("TenKhoa")); // Ánh xạ tên khoa lên combobox
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Đã xóa ngành thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Không có mã ngành cần tìm!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-                txtMaNganh.setText("");
-                txtTenNganh.setText("");
-                comboTenKhoa.setSelectedIndex(-1);
+                JOptionPane.showMessageDialog(this, "Xóa ngành không thành công!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             }
+
+            loadDataToTable();
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_nganh.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_nganh_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnTimKiemActionPerformed
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // Xóa dữ liệu trong tất cả các textfield và combobox
+        txtMaNganh.setText("");
+        txtTenNganh.setText("");
+        comboTenKhoa.setSelectedIndex(0);
+        txtTimKiem.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void tb_nganhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_nganhMouseClicked
         int selectedRow = tb_nganh.getSelectedRow();
@@ -360,48 +352,6 @@ public class form_ad_nganh extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tb_nganhMouseClicked
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        loadDataToTable();
-    }//GEN-LAST:event_formWindowOpened
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(form_ad_nganh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(form_ad_nganh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(form_ad_nganh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(form_ad_nganh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new form_ad_nganh().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReset;
@@ -420,5 +370,4 @@ public class form_ad_nganh extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenNganh;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
-
 }

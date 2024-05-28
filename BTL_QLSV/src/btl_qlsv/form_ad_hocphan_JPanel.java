@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package btl_qlsv;
 
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class form_ad_hocphan extends javax.swing.JFrame {
+public class form_ad_hocphan_JPanel extends javax.swing.JPanel {
 
     void Reset() {
         txtMa.setText("");
@@ -49,7 +49,7 @@ public class form_ad_hocphan extends javax.swing.JFrame {
                 tb_hocphan.setModel(dtm);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_hocphan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_hocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -66,15 +66,16 @@ public class form_ad_hocphan extends javax.swing.JFrame {
                 dcm.addElement(mcb);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_hocphan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_hocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     /**
-     * Creates new form form_ad_hocphan
+     * Creates new form form_ad_hocphan_JPanel
      */
-    public form_ad_hocphan() {
+    public form_ad_hocphan_JPanel() {
         initComponents();
+        comboTN();
     }
 
     /**
@@ -86,38 +87,46 @@ public class form_ad_hocphan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtMa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        combNKH = new javax.swing.JComboBox<>();
+        btnHien = new javax.swing.JButton();
         txtTN = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_hocphan = new javax.swing.JTable();
-        btnTimKiem = new javax.swing.JButton();
-        btnThem = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        btnSua = new javax.swing.JButton();
-        txtTKT = new javax.swing.JTextField();
-        btnXoa = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        combNKH = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnTimKiem = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        btnThem = new javax.swing.JButton();
         combTN = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         txtSTC = new javax.swing.JTextField();
+        btnSua = new javax.swing.JButton();
         txtHP = new javax.swing.JTextField();
+        txtTKT = new javax.swing.JTextField();
         txtSDVHT = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtMa = new javax.swing.JTextField();
-        btnHien = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+        jLabel8.setText("Mã học phần:");
+
+        jLabel3.setText("Tên ngành:");
+
+        jLabel2.setText("Tên học phần:");
+
+        combNKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm 1 Kỳ 1", "Năm 1 Kỳ 2", "Năm 2 Kỳ 1", "Năm 2 Kỳ 2", "Năm 3 Kỳ 1", "Năm 3 Kỳ 2", "Năm 4 Kỳ 1", "Năm 4 Kỳ 2" }));
+
+        btnHien.setText("Hiển thị bảng");
+        btnHien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHienActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Tên học phần:");
+        jLabel1.setText("Số tín chỉ:");
 
         tb_hocphan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,6 +146,10 @@ public class form_ad_hocphan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb_hocphan);
 
+        jLabel4.setText("Học phí:");
+
+        jLabel6.setText("Số đơn vị học trình:");
+
         btnTimKiem.setText("Tìm kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,10 +157,18 @@ public class form_ad_hocphan extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Năm kỳ học:");
+
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
+            }
+        });
+
+        combTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combTNActionPerformed(evt);
             }
         });
 
@@ -167,35 +188,8 @@ public class form_ad_hocphan extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Tên ngành:");
-
-        combNKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm 1 Kỳ 1", "Năm 1 Kỳ 2", "Năm 2 Kỳ 1", "Năm 2 Kỳ 2", "Năm 3 Kỳ 1", "Năm 3 Kỳ 2", "Năm 4 Kỳ 1", "Năm 4 Kỳ 2" }));
-
-        jLabel1.setText("Số tín chỉ:");
-
-        jLabel4.setText("Học phí:");
-
-        jLabel6.setText("Số đơn vị học trình:");
-
-        jLabel7.setText("Năm kỳ học:");
-
-        combTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combTNActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Mã học phần:");
-
-        btnHien.setText("Hiển thị bảng");
-        btnHien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHienActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -288,7 +282,7 @@ public class form_ad_hocphan extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtSDVHT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(combNKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
@@ -305,68 +299,14 @@ public class form_ad_hocphan extends javax.swing.JFrame {
                         .addComponent(btnHien, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTNActionPerformed
+    private void btnHienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHienActionPerformed
         // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_combTNActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.Xuat();
+        this.Reset();
         comboTN();
-    }//GEN-LAST:event_formWindowOpened
-
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-        String ma = txtMa.getText();
-        String ten = txtTN.getText();
-        String maTN;
-        MyComboBox chonTN = (MyComboBox) combTN.getSelectedItem();
-        maTN = chonTN.MaString();
-        String tc = txtSTC.getText();
-        String hp = txtHP.getText();
-        String dv = txtSDVHT.getText();
-        String hk = combNKH.getSelectedItem().toString();
-
-        try {
-            String sqlThem = "insert into hocphan values('" + ma + "','" + ten + "',"
-                    + "'" + maTN + "','" + tc + "','" + hp + "','" + dv + "','" + hk + "')";
-            DataAccess.inSertEditDelete(sqlThem);
-            this.Xuat();
-            this.Reset();
-        } catch (SQLException ex) {
-            Logger.getLogger(form_ad_hocphan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnThemActionPerformed
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
-        String ma = txtMa.getText();
-        String ten = txtTN.getText();
-        String maTN;
-        MyComboBox chonTN = (MyComboBox) combTN.getSelectedItem();
-        maTN = chonTN.MaString();
-        String tc = txtSTC.getText();
-        String hp = txtHP.getText();
-        String dv = txtSDVHT.getText();
-        String hk = combNKH.getSelectedItem().toString();
-        try {
-            String sqlSua = "update hocphan set TenHocPhan='" + ten + "',"
-                    + "MaNganh='" + maTN + "',SoTinChi='" + tc + "',"
-                    + "HocPhi='" + hp + "',SoDonViHocTrinh='" + dv + "',"
-                    + "NamKyHoc='" + hk + "' where MaHocPhan='" + ma + "'";
-            DataAccess.inSertEditDelete(sqlSua);
-            this.Xuat();
-            this.Reset();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(form_ad_hocphan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnSuaActionPerformed
+    }//GEN-LAST:event_btnHienActionPerformed
 
     private void tb_hocphanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hocphanMouseClicked
         //lấy dòng vừa chọn
@@ -390,19 +330,6 @@ public class form_ad_hocphan extends javax.swing.JFrame {
         dcm.setSelectedItem(nganh);
     }//GEN-LAST:event_tb_hocphanMouseClicked
 
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
-        String ma = txtMa.getText();
-        try {
-            String sqlXoa = "delete from hocphan where MaHocPhan= '" + ma + "'";
-            DataAccess.inSertEditDelete(sqlXoa);
-            this.Xuat();
-            this.Reset();
-        } catch (SQLException ex) {
-            Logger.getLogger(form_ad_hocphan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnXoaActionPerformed
-
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
         String tuKhoa = txtTKT.getText().trim();
@@ -410,11 +337,11 @@ public class form_ad_hocphan extends javax.swing.JFrame {
             try {
                 Connection c = KetNoi.KNCSDL();
                 String sql = " SELECT MaHocPhan, TenHocPhan, TenNganh, SoTinChi, HocPhi, SoDonViHocTrinh, NamKyHoc FROM hocphan "
-                        + "JOIN nganh ON hocphan.MaNganh = nganh.MaNganh WHERE MaHocPhan = ? OR TenHocPhan  = ?";
+                + "JOIN nganh ON hocphan.MaNganh = nganh.MaNganh WHERE MaHocPhan = ? OR TenHocPhan  = ?";
                 PreparedStatement ps = c.prepareStatement(sql);
 
                 ps.setString(1, tuKhoa); // Tìm kiếm theo mã học phần
-                ps.setString(2, tuKhoa); // Tìm kiếm theo tên học phần         
+                ps.setString(2, tuKhoa); // Tìm kiếm theo tên học phần
                 // Thực thi câu truy vấn
                 ResultSet rs = ps.executeQuery();
                 // Tạo một DefaultTableModel mới để hiển thị kết quả tìm kiếm
@@ -424,15 +351,15 @@ public class form_ad_hocphan extends javax.swing.JFrame {
                 // Duyệt qua kết quả tìm kiếm và thêm vào bảng
                 while (rs.next()) {
                     Object[] rowData
-                            = {
-                                rs.getString("MaHocPhan"),
-                                rs.getString("TenHocPhan"),
-                                rs.getString("TenNganh"),
-                                rs.getString("SoTinChi"),
-                                rs.getString("HocPhi"),
-                                rs.getString("SoDonViHocTrinh"),
-                                rs.getString("NamKyHoc")
-                            };
+                    = {
+                        rs.getString("MaHocPhan"),
+                        rs.getString("TenHocPhan"),
+                        rs.getString("TenNganh"),
+                        rs.getString("SoTinChi"),
+                        rs.getString("HocPhi"),
+                        rs.getString("SoDonViHocTrinh"),
+                        rs.getString("NamKyHoc")
+                    };
                     dtm.addRow(rowData);
                 }
                 rs.close();
@@ -440,57 +367,79 @@ public class form_ad_hocphan extends javax.swing.JFrame {
                 c.close();
                 txtTKT.setText("");
             } catch (SQLException ex) {
-                Logger.getLogger(form_ad_hocphan.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(form_ad_hocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập từ khóa tìm kiếm.");
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
-    private void btnHienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHienActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        this.Xuat();
-        this.Reset();
-        comboTN();
-    }//GEN-LAST:event_btnHienActionPerformed
+        String ma = txtMa.getText();
+        String ten = txtTN.getText();
+        String maTN;
+        MyComboBox chonTN = (MyComboBox) combTN.getSelectedItem();
+        maTN = chonTN.MaString();
+        String tc = txtSTC.getText();
+        String hp = txtHP.getText();
+        String dv = txtSDVHT.getText();
+        String hk = combNKH.getSelectedItem().toString();
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(form_ad_hocphan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(form_ad_hocphan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(form_ad_hocphan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(form_ad_hocphan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            String sqlThem = "insert into hocphan values('" + ma + "','" + ten + "',"
+            + "'" + maTN + "','" + tc + "','" + hp + "','" + dv + "','" + hk + "')";
+            DataAccess.inSertEditDelete(sqlThem);
+            this.Xuat();
+            this.Reset();
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_hocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_btnThemActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new form_ad_hocphan().setVisible(true);
-            }
-        });
-    }
+    private void combTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTNActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_combTNActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        String ma = txtMa.getText();
+        String ten = txtTN.getText();
+        String maTN;
+        MyComboBox chonTN = (MyComboBox) combTN.getSelectedItem();
+        maTN = chonTN.MaString();
+        String tc = txtSTC.getText();
+        String hp = txtHP.getText();
+        String dv = txtSDVHT.getText();
+        String hk = combNKH.getSelectedItem().toString();
+        try {
+            String sqlSua = "update hocphan set TenHocPhan='" + ten + "',"
+            + "MaNganh='" + maTN + "',SoTinChi='" + tc + "',"
+            + "HocPhi='" + hp + "',SoDonViHocTrinh='" + dv + "',"
+            + "NamKyHoc='" + hk + "' where MaHocPhan='" + ma + "'";
+            DataAccess.inSertEditDelete(sqlSua);
+            this.Xuat();
+            this.Reset();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_hocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        String ma = txtMa.getText();
+        try {
+            String sqlXoa = "delete from hocphan where MaHocPhan= '" + ma + "'";
+            DataAccess.inSertEditDelete(sqlXoa);
+            this.Xuat();
+            this.Reset();
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_hocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHien;

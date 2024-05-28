@@ -24,6 +24,30 @@ public class form_ad_khoa_JPanel extends javax.swing.JPanel {
         loadDataToTable();
     }
 
+    private void loadDataToTable() {
+        try {
+            // TODO add your handling code here:
+            Connection kn = KetNoi.KNCSDL();
+            String sql = "select * from khoa";
+            Statement stm = kn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            DefaultTableModel dtm = (DefaultTableModel) tb_khoa.getModel();
+            dtm.setRowCount(0);
+            while (rs.next()) {
+                Object objliss[] = {
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3)
+                };
+                dtm.addRow(objliss);
+                tb_khoa.setModel(dtm);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_khoa_JPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -178,29 +202,7 @@ public class form_ad_khoa_JPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadDataToTable() {
-        try {
-            // TODO add your handling code here:
-            Connection kn = KetNoi.KNCSDL();
-            String sql = "select * from khoa";
-            Statement stm = kn.createStatement();
-            ResultSet rs = stm.executeQuery(sql);
-            DefaultTableModel dtm = (DefaultTableModel) tb_khoa.getModel();
-            dtm.setRowCount(0);
-            while (rs.next()) {
-                Object objliss[] = {
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3)
-                };
-                dtm.addRow(objliss);
-                tb_khoa.setModel(dtm);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+   
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String makhoa = txtTimKiem.getText();
@@ -236,7 +238,7 @@ public class form_ad_khoa_JPanel extends javax.swing.JPanel {
                 txtTruongKhoa.setText("");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_khoa_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
@@ -288,7 +290,7 @@ public class form_ad_khoa_JPanel extends javax.swing.JPanel {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_khoa_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -334,7 +336,7 @@ public class form_ad_khoa_JPanel extends javax.swing.JPanel {
                 loadDataToTable();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_khoa_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -363,7 +365,7 @@ public class form_ad_khoa_JPanel extends javax.swing.JPanel {
                 loadDataToTable();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(form_ad_khoa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(form_ad_khoa_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 

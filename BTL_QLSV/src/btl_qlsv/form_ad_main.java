@@ -141,14 +141,14 @@ public class form_ad_main extends javax.swing.JFrame {
                 .addComponent(jPanel_ChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_HienThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel_ChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel_HienThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 57, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,32 +156,44 @@ public class form_ad_main extends javax.swing.JFrame {
 
     private void btnHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHocPhanActionPerformed
         // TODO add your handling code here:\
-        form_ad_hocphan form = new form_ad_hocphan();
-        form.setVisible(true);
+        form_ad_hocphan_JPanel form = new form_ad_hocphan_JPanel();
+        this.jPanel_HienThi.removeAll();
+        this.jPanel_HienThi.setLayout(new BorderLayout());
+        this.jPanel_HienThi.add(form, BorderLayout.CENTER);
+        this.jPanel_HienThi.validate();
+        this.jPanel_HienThi.repaint();
     }//GEN-LAST:event_btnHocPhanActionPerformed
 
     private void btnKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaActionPerformed
         // TODO add your handling code here:
 //        form_ad_khoa form = new form_ad_khoa();
 //        form.setVisible(true);
-        form_ad_khoa_JPanel test = new form_ad_khoa_JPanel();
+        form_ad_khoa_JPanel form = new form_ad_khoa_JPanel();
         this.jPanel_HienThi.removeAll();
         this.jPanel_HienThi.setLayout(new BorderLayout());
-        this.jPanel_HienThi.add(test, BorderLayout.CENTER);
+        this.jPanel_HienThi.add(form, BorderLayout.CENTER);
         this.jPanel_HienThi.validate();
         this.jPanel_HienThi.repaint();
     }//GEN-LAST:event_btnKhoaActionPerformed
 
     private void btnNganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNganhActionPerformed
         // TODO add your handling code here:
-        form_ad_nganh form = new form_ad_nganh();
-        form.setVisible(true);
+        form_ad_nganh_JPanel form = new form_ad_nganh_JPanel();
+        this.jPanel_HienThi.removeAll();
+        this.jPanel_HienThi.setLayout(new BorderLayout());
+        this.jPanel_HienThi.add(form, BorderLayout.CENTER);
+        this.jPanel_HienThi.validate();
+        this.jPanel_HienThi.repaint();
     }//GEN-LAST:event_btnNganhActionPerformed
 
     private void btnLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLopActionPerformed
         // TODO add your handling code here:
-        form_ad_lop form = new form_ad_lop();
-        form.setVisible(true);
+        form_ad_lop_JPanel form = new form_ad_lop_JPanel();
+        this.jPanel_HienThi.removeAll();
+        this.jPanel_HienThi.setLayout(new BorderLayout());
+        this.jPanel_HienThi.add(form, BorderLayout.CENTER);
+        this.jPanel_HienThi.validate();
+        this.jPanel_HienThi.repaint();
     }//GEN-LAST:event_btnLopActionPerformed
 
     private void btnSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSinhVienActionPerformed
@@ -192,8 +204,12 @@ public class form_ad_main extends javax.swing.JFrame {
 
     private void btnLopHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLopHocPhanActionPerformed
         // TODO add your handling code here:
-        form_ad_lophocphan form = new form_ad_lophocphan();
-        form.setVisible(true);
+        form_ad_lophocphan_JPanel form = new form_ad_lophocphan_JPanel();
+        this.jPanel_HienThi.removeAll();
+        this.jPanel_HienThi.setLayout(new BorderLayout());
+        this.jPanel_HienThi.add(form, BorderLayout.CENTER);
+        this.jPanel_HienThi.validate();
+        this.jPanel_HienThi.repaint();
     }//GEN-LAST:event_btnLopHocPhanActionPerformed
 
     /**
