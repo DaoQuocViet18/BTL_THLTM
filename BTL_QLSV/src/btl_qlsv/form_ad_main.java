@@ -35,6 +35,7 @@ public class form_ad_main extends javax.swing.JFrame {
         btnSinhVien = new javax.swing.JButton();
         btnLopHocPhan = new javax.swing.JButton();
         btnHocPhan = new javax.swing.JButton();
+        btnThongKe = new javax.swing.JButton();
         jPanel_HienThi = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,6 +90,14 @@ public class form_ad_main extends javax.swing.JFrame {
             }
         });
 
+        btnThongKe.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnThongKe.setText("Thống kê");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_ChucNangLayout = new javax.swing.GroupLayout(jPanel_ChucNang);
         jPanel_ChucNang.setLayout(jPanel_ChucNangLayout);
         jPanel_ChucNangLayout.setHorizontalGroup(
@@ -101,7 +110,8 @@ public class form_ad_main extends javax.swing.JFrame {
                     .addComponent(btnLop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLopHocPhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHocPhan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHocPhan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel_ChucNangLayout.setVerticalGroup(
@@ -119,6 +129,8 @@ public class form_ad_main extends javax.swing.JFrame {
                 .addComponent(btnSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLopHocPhan, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -212,6 +224,16 @@ public class form_ad_main extends javax.swing.JFrame {
         this.jPanel_HienThi.repaint();
     }//GEN-LAST:event_btnLopHocPhanActionPerformed
 
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        // TODO add your handling code here:
+        form_ad_thongke_JPanel form = new form_ad_thongke_JPanel();
+        this.jPanel_HienThi.removeAll();
+        this.jPanel_HienThi.setLayout(new BorderLayout());
+        this.jPanel_HienThi.add(form, BorderLayout.CENTER);
+        this.jPanel_HienThi.validate();
+        this.jPanel_HienThi.repaint();
+    }//GEN-LAST:event_btnThongKeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +276,7 @@ public class form_ad_main extends javax.swing.JFrame {
     private javax.swing.JButton btnLopHocPhan;
     private javax.swing.JButton btnNganh;
     private javax.swing.JButton btnSinhVien;
+    private javax.swing.JButton btnThongKe;
     private javax.swing.JPanel jPanel_ChucNang;
     private javax.swing.JPanel jPanel_HienThi;
     // End of variables declaration//GEN-END:variables

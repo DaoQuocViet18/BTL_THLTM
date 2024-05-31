@@ -28,10 +28,8 @@ public class form_ad_nganh_JPanel extends javax.swing.JPanel {
 
     private void loadComboBox() {
         try {
-            Connection kn = KetNoi.KNCSDL();
             String sql = "SELECT TenKhoa FROM khoa";
-            Statement stm = kn.createStatement();
-            ResultSet rs = stm.executeQuery(sql);
+            ResultSet rs = DataAccess.getResult(sql);
             while (rs.next()) {
                 comboTenKhoa.addItem(rs.getString("TenKhoa"));
             }

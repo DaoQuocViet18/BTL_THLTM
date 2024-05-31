@@ -332,11 +332,10 @@ public class form_ad_dangkyhocphan extends javax.swing.JFrame {
             String MaDKHP = "";
             if (MaDangKyHocPhan < 10) {
                 MaDKHP = "0" + MaDangKyHocPhan;
-            }
-            else
+            } else {
                 MaDKHP += MaDangKyHocPhan;
-            
-            
+            }
+
             sql = "INSERT INTO `dangkyhocphan`(`MaDangKyHocPhan`, `MaSinhVien`, `MaLopHocPhan`, `DiemHeSo1_1`, `DiemHeSo1_2`, `DiemHeSo2_1`, `DiemHeSo2_2`, `DiemThiCuoiKy`, `DiemTongKet`, `DiemTongKet_TD4`) "
                     + "VALUES "
                     + "('DKHP" + MaDKHP + "', "
@@ -368,8 +367,6 @@ public class form_ad_dangkyhocphan extends javax.swing.JFrame {
             try {
                 String tenSV = combTSV.getItemAt(combTSV.getSelectedIndex());
                 String maSV = this.getMaSV(tenSV);
-
-
 
                 String sql = "UPDATE dangkyhocphan SET "
                         + "MaSinhVien = '" + maSV + "', "
@@ -459,7 +456,7 @@ public class form_ad_dangkyhocphan extends javax.swing.JFrame {
                     + "INSTR(dkhp.MaDangKyHocPhan, '" + txtTKT.getText() + "') > 0 OR "
                     + "INSTR(dkhp.MaSinhVien, '" + txtTKT.getText() + "') > 0  OR "
                     + "INSTR(sv.TenSinhVien, '" + txtTKT.getText() + "') > 0)";
-            
+
             ResultSet rs = DataAccess.getResult(sql_l);
             DefaultTableModel dtm = (DefaultTableModel) this.tb_dangkylophocphan.getModel();
             dtm.setRowCount(0);
@@ -639,13 +636,15 @@ public class form_ad_dangkyhocphan extends javax.swing.JFrame {
             int rowCount = model.getRowCount();
 
             StringBuilder maSinhVien = new StringBuilder();
-            for (int i = 0; i < rowCount; i++) {
-                String maSV = (String) model.getValueAt(i, 0);
-                maSinhVien.append("'" + maSV + "'");
-                if (i < rowCount - 1) {
-                    maSinhVien.append(", ");
+            if (model.getRowCount() != 0) {
+                for (int i = 0; i < rowCount; i++) {
+                    String maSV = (String) model.getValueAt(i, 0);
+                    maSinhVien.append("'" + maSV + "',");
                 }
+                maSinhVien.setLength(maSinhVien.length() - 1);
             }
+            else
+                maSinhVien.append("' '");
 
             String allStudentIDs = maSinhVien.toString();
 

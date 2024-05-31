@@ -23,8 +23,12 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
     public form_ad_lophocphan_JPanel() {
         initComponents();
         
+        txtNamKyHoc.setEditable(false);
+        
         Them_TenHP_vao_combTHP();
         HienThi_tb_lophocphan();
+        
+        
     }
 
     public void Reset() {
@@ -36,7 +40,7 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
     
     private void HienThi_tb_lophocphan() {
         try {
-            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan "
+            String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, hp.NamKyHoc "
                     + "FROM lophocphan as lhp "
                     + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan ";
             ResultSet rs = DataAccess.getResult(sql_l);
@@ -47,7 +51,8 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
-                    siSo(rs.getString(1))
+                    siSo(rs.getString(1)),
+                    rs.getString(4)
                 };
                 dtm.addRow(objlist);
             }
@@ -176,6 +181,8 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
         btnReset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_lophocphan = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        txtNamKyHoc = new javax.swing.JTextField();
 
         jLabel3.setText("Tên học phần:");
 
@@ -205,6 +212,11 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
         jLabel2.setText("Tên lớp học phần:");
 
         combTHP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        combTHP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combTHPActionPerformed(evt);
+            }
+        });
 
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -231,13 +243,13 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
 
         tb_lophocphan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã lớp học phần", "Tên lớp học phần", "Tên học phần", "Sĩ số"
+                "Mã lớp học phần", "Tên lớp học phần", "Tên học phần", "Sĩ số", "Năm Kỳ Học"
             }
         ));
         tb_lophocphan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -247,6 +259,11 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tb_lophocphan);
 
+        jLabel4.setText("Năm Kỳ Học:");
+
+        txtNamKyHoc.setBackground(new java.awt.Color(204, 204, 204));
+        txtNamKyHoc.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,17 +271,19 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTKT, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(combTHP, javax.swing.GroupLayout.Alignment.TRAILING, 0, 319, Short.MAX_VALUE)
-                            .addComponent(txtTLHP, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(txtTLHP, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNamKyHoc))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTimKiem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -274,8 +293,7 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnChiTiet)
-                            .addComponent(btnReset))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(btnReset))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -298,7 +316,11 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(combTHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(27, 27, 27)
-                .addComponent(btnXoa)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnXoa)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtNamKyHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -350,9 +372,6 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
             // TODO add your handling code here:
-            if (!Ktra_txt_comb()) {
-                return;
-            }
             String tenLopHocPhan = txtTLHP.getText();
             String maHocPhan = this.getMaHP(combTHP.getSelectedItem().toString());
 
@@ -450,6 +469,22 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
         combTHP.setSelectedItem(tb_lophocphan.getValueAt(row, 2));
     }//GEN-LAST:event_tb_lophocphanMouseClicked
 
+    private void combTHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTHPActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.txtTLHP.setText(this.combTHP.getSelectedItem().toString());
+            
+            String sql_l = "SELECT NamKyHoc "
+                    + "FROM hocphan "
+                    + "WHERE TenHocPhan = '" + this.combTHP.getSelectedItem().toString() + "' ";
+            ResultSet rs = DataAccess.getResult(sql_l);
+            rs.next();
+            this.txtNamKyHoc.setText(rs.getString(1).toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(form_ad_lophocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_combTHPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChiTiet;
@@ -461,9 +496,11 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> combTHP;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb_lophocphan;
+    private javax.swing.JTextField txtNamKyHoc;
     private javax.swing.JTextField txtTKT;
     private javax.swing.JTextField txtTLHP;
     // End of variables declaration//GEN-END:variables
