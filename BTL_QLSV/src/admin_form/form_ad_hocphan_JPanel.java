@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package btl_qlsv;
+package admin_form;
 
+import data.DataAccess;
+import data.KetNoi;
+import data.MyComboBox;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
