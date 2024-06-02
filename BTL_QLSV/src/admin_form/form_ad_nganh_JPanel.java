@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -32,6 +33,7 @@ public class form_ad_nganh_JPanel extends javax.swing.JPanel {
         try {
             String sql = "SELECT TenKhoa FROM khoa";
             ResultSet rs = DataAccess.getResult(sql);
+//            rs.next();
             while (rs.next()) {
                 comboTenKhoa.addItem(rs.getString("TenKhoa"));
             }
@@ -50,7 +52,7 @@ public class form_ad_nganh_JPanel extends javax.swing.JPanel {
                     + "FROM nganh INNER JOIN khoa ON nganh.MaKhoa = khoa.MaKhoa";
             Statement stm = kn.createStatement();
             ResultSet rs = stm.executeQuery(sql);
-
+            rs.next();
             while (rs.next()) {
                 String maNganh = rs.getString("MaNganh");
                 String tenNganh = rs.getString("TenNganh");
@@ -63,6 +65,7 @@ public class form_ad_nganh_JPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Lỗi khi lấy dữ liệu từ cơ sở dữ liệu!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,8 +223,8 @@ public class form_ad_nganh_JPanel extends javax.swing.JPanel {
             Connection kn = KetNoi.KNCSDL();
 
             String sqlSearch = "SELECT nganh.MaNganh, nganh.TenNganh, khoa.TenKhoa "
-            + "FROM nganh INNER JOIN khoa ON nganh.MaKhoa = khoa.MaKhoa "
-            + "WHERE nganh.MaNganh = ?";
+                    + "FROM nganh INNER JOIN khoa ON nganh.MaKhoa = khoa.MaKhoa "
+                    + "WHERE nganh.MaNganh = ?";
             PreparedStatement pst = kn.prepareStatement(sqlSearch);
             pst.setString(1, maNganh);
             ResultSet rs = pst.executeQuery();

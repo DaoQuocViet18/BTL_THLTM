@@ -34,6 +34,7 @@ public class form_ad_khoa_JPanel extends javax.swing.JPanel {
             ResultSet rs = stm.executeQuery(sql);
             DefaultTableModel dtm = (DefaultTableModel) tb_khoa.getModel();
             dtm.setRowCount(0);
+            rs.next();
             while (rs.next()) {
                 Object objliss[] = {
                     rs.getString(1),

@@ -290,7 +290,7 @@ public class form_ad_lop_JPanel extends javax.swing.JPanel {
                         rs.getString("Malop"),
                         rs.getString("Tenlop"),
                         rs.getString("Manganh"),
-                        rs.getString("Tencvht")
+                        rs.getString("TenCoVanHocTap")
                     };
                     dtm.addRow(rowData); // Thêm dòng vào bảng
                 }
@@ -327,6 +327,7 @@ public class form_ad_lop_JPanel extends javax.swing.JPanel {
             ResultSet rs = DataAccess.getResult(sql2);
             DefaultTableModel dtm = (DefaultTableModel) tb.getModel();
             dtm.setRowCount(0);
+            rs.next();
             while (rs.next()) {
                 Object objliss[]
                         = {
