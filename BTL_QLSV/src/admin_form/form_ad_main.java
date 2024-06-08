@@ -222,11 +222,11 @@ public class form_ad_main extends javax.swing.JFrame {
         jPanel_HienThi.setLayout(jPanel_HienThiLayout);
         jPanel_HienThiLayout.setHorizontalGroup(
             jPanel_HienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 643, Short.MAX_VALUE)
+            .addGap(0, 966, Short.MAX_VALUE)
         );
         jPanel_HienThiLayout.setVerticalGroup(
             jPanel_HienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 577, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,8 +243,8 @@ public class form_ad_main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel_ChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel_HienThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel_HienThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -336,38 +336,38 @@ public class form_ad_main extends javax.swing.JFrame {
 
     private void lb_sinhvienMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_sinhvienMouseEntered
         // TODO add your handling code here:
-              Opened_Background(this.lb_sinhvien);
+        Opened_Background(this.lb_sinhvien);
 
     }//GEN-LAST:event_lb_sinhvienMouseEntered
 
     private void lb_sinhvienMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_sinhvienMouseExited
         // TODO add your handling code here:
-                Closed_Background(this.lb_sinhvien);
+        Closed_Background(this.lb_sinhvien);
 
     }//GEN-LAST:event_lb_sinhvienMouseExited
 
     private void lb_sinhvienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_sinhvienMouseClicked
         // TODO add your handling code here:
-        form_ad_sinhvien form = new form_ad_sinhvien();
-        form.setVisible(true);
+        form_ad_sinhvien_JPanel form = new form_ad_sinhvien_JPanel();
+        Opened_JPanel_Form(form);
     }//GEN-LAST:event_lb_sinhvienMouseClicked
 
     private void lb_thongkeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_thongkeMouseEntered
         // TODO add your handling code here:
-                Opened_Background(this.lb_thongke);
+        Opened_Background(this.lb_thongke);
 
     }//GEN-LAST:event_lb_thongkeMouseEntered
 
     private void lb_thongkeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_thongkeMouseExited
         // TODO add your handling code here:
-                Closed_Background(this.lb_thongke);
+        Closed_Background(this.lb_thongke);
 
     }//GEN-LAST:event_lb_thongkeMouseExited
 
     private void lb_thongkeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_thongkeMouseClicked
         // TODO add your handling code here:
         form_ad_thongke_JPanel form = new form_ad_thongke_JPanel();
-                Opened_JPanel_Form(form);
+        Opened_JPanel_Form(form);
 
     }//GEN-LAST:event_lb_thongkeMouseClicked
 

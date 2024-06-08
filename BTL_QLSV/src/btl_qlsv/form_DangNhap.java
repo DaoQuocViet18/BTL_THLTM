@@ -180,7 +180,7 @@ public class form_DangNhap extends javax.swing.JFrame {
                     form_ad_main form = new form_ad_main();
                     form.setVisible(true);
                 } else if (rs.getString("MaSinhVien") != null) {
-                    form_sv_main form = new form_sv_main();
+                    form_sv_main form = new form_sv_main(rs.getString("MaSinhVien"));
                     form.setVisible(true);
                 }
                 this.dispose();

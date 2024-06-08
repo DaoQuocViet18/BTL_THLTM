@@ -18,8 +18,18 @@ public class form_sv_main extends javax.swing.JFrame {
     /**
      * Creates new form form_sv_main
      */
-    public form_sv_main() {
+    String maSinhVien;
+
+    public form_sv_main(String maSinhVien) {
         initComponents();
+        this.maSinhVien = maSinhVien;
+
+        form_sv_hienthiThongTin_JPanel form = new form_sv_hienthiThongTin_JPanel(this.maSinhVien);
+        Opened_JPanel_Form(form);
+    }
+
+    private form_sv_main() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     private void Opened_Background(JLabel lab) {
@@ -65,6 +75,9 @@ public class form_sv_main extends javax.swing.JFrame {
         lbKetQuaHocPhan.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Máy tính\\UNETI\\TH_LTM\\BTL\\Code\\GIT_BTL_QLSV\\BTL_THLTM\\BTL_QLSV\\src\\image\\KetQuaHocTap.png")); // NOI18N
         lbKetQuaHocPhan.setText("Kết quả học tập");
         lbKetQuaHocPhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbKetQuaHocPhanMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lbKetQuaHocPhanMouseEntered(evt);
             }
@@ -78,6 +91,9 @@ public class form_sv_main extends javax.swing.JFrame {
         lb_hocphan.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Máy tính\\UNETI\\TH_LTM\\BTL\\Code\\GIT_BTL_QLSV\\BTL_THLTM\\BTL_QLSV\\src\\image\\sv_HocPhan.png")); // NOI18N
         lb_hocphan.setText("Học phần");
         lb_hocphan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_hocphanMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lb_hocphanMouseEntered(evt);
             }
@@ -91,6 +107,9 @@ public class form_sv_main extends javax.swing.JFrame {
         lbTrangChu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Máy tính\\UNETI\\TH_LTM\\BTL\\Code\\GIT_BTL_QLSV\\BTL_THLTM\\BTL_QLSV\\src\\image\\TrangChu.png")); // NOI18N
         lbTrangChu.setText("Trang chủ");
         lbTrangChu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbTrangChuMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lbTrangChuMouseEntered(evt);
             }
@@ -110,7 +129,7 @@ public class form_sv_main extends javax.swing.JFrame {
                 .addComponent(lb_hocphan, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbKetQuaHocPhan)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,6 +200,24 @@ public class form_sv_main extends javax.swing.JFrame {
         // TODO add your handling code here:
         Closed_Background(this.lbKetQuaHocPhan);
     }//GEN-LAST:event_lbKetQuaHocPhanMouseExited
+
+    private void lbTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrangChuMouseClicked
+        // TODO add your handling code here:
+        form_sv_hienthiThongTin_JPanel form = new form_sv_hienthiThongTin_JPanel(this.maSinhVien);
+        Opened_JPanel_Form(form);
+    }//GEN-LAST:event_lbTrangChuMouseClicked
+
+    private void lb_hocphanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_hocphanMouseClicked
+        // TODO add your handling code here:
+        form_sv_hienthiHocPhan_JPanel form = new form_sv_hienthiHocPhan_JPanel(this.maSinhVien);
+        Opened_JPanel_Form(form);
+    }//GEN-LAST:event_lb_hocphanMouseClicked
+
+    private void lbKetQuaHocPhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbKetQuaHocPhanMouseClicked
+        // TODO add your handling code here:
+        form_sv_hienthiDiem_JPanel form = new form_sv_hienthiDiem_JPanel(this.maSinhVien);
+        Opened_JPanel_Form(form);
+    }//GEN-LAST:event_lbKetQuaHocPhanMouseClicked
 
     /**
      * @param args the command line arguments

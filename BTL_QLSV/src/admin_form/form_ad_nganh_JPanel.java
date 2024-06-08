@@ -49,10 +49,11 @@ public class form_ad_nganh_JPanel extends javax.swing.JPanel {
         try {
             Connection kn = KetNoi.KNCSDL();
             String sql = "SELECT nganh.MaNganh, nganh.TenNganh, khoa.TenKhoa "
-                    + "FROM nganh INNER JOIN khoa ON nganh.MaKhoa = khoa.MaKhoa";
+                    + "FROM nganh "
+                    + "INNER JOIN khoa ON nganh.MaKhoa = khoa.MaKhoa "
+                    + "WHERE MaNganh NOT LIKE 'N00'";
             Statement stm = kn.createStatement();
             ResultSet rs = stm.executeQuery(sql);
-            rs.next();
             while (rs.next()) {
                 String maNganh = rs.getString("MaNganh");
                 String tenNganh = rs.getString("TenNganh");
