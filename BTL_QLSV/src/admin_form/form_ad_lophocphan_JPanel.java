@@ -5,6 +5,7 @@
 package admin_form;
 
 import data.DataAccess;
+import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,22 +24,21 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
      */
     public form_ad_lophocphan_JPanel() {
         initComponents();
-        
+
         txtNamKyHoc.setEditable(false);
-        
+
         Them_TenHP_vao_combTHP();
         HienThi_tb_lophocphan();
-        
-        
+
     }
 
     public void Reset() {
         txtTLHP.setText("");
         combTHP.setSelectedIndex(0);
+        txtNamKyHoc.setText("");
         HienThi_tb_lophocphan();
     }
-    
-    
+
     private void HienThi_tb_lophocphan() {
         try {
             String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan, hp.NamKyHoc "
@@ -66,11 +66,11 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
 
     private int siSo(String MaLopHocPhan) throws SQLException {
         String sql_l = "SELECT count(*) "
-                    + "FROM dangkyhocphan "
-                    + "WHERE MaLopHocPhan = '" + MaLopHocPhan + "' ";
-            ResultSet rs = DataAccess.getResult(sql_l);
-            rs.next();
-            return rs.getInt(1);
+                + "FROM dangkyhocphan "
+                + "WHERE MaLopHocPhan = '" + MaLopHocPhan + "' ";
+        ResultSet rs = DataAccess.getResult(sql_l);
+        rs.next();
+        return rs.getInt(1);
     }
 
     private void Them_TenHP_vao_combTHP() {
@@ -138,7 +138,7 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
             HienThiThongBao_Thieu(txtCanhBao);
             return false;
         }
-        
+
 //        String str_Ktra = txtTLHP.getText();
 //        if (str_Ktra.trim().equals("")) {
 //            String txtCanhBao = "Vui lòng nhập lại tên lớp học phần!";
@@ -158,7 +158,6 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
         return true;
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -348,10 +347,10 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
             //                    + "INSTR(lhp.DanhSachSinhVien, '" + txtTKT.getText() + "') > 0";
 
             String sql_l = "SELECT lhp.MaLopHocPhan, lhp.TenLopHocPhan, hp.TenHocPhan "
-            + "FROM lophocphan as lhp "
-            + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan "
-            + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
-            + "INSTR(lhp.TenLopHocPhan, '" + txtTKT.getText() + "') > 0";
+                    + "FROM lophocphan as lhp "
+                    + "JOIN hocphan as hp on lhp.MaHocPhan = hp.MaHocPhan "
+                    + "WHERE INSTR(lhp.MaLopHocPhan, '" + txtTKT.getText() + "') > 0 OR "
+                    + "INSTR(lhp.TenLopHocPhan, '" + txtTKT.getText() + "') > 0";
             ResultSet rs = DataAccess.getResult(sql_l);
             DefaultTableModel dtm = (DefaultTableModel) tb_lophocphan.getModel();
             dtm.setRowCount(0);
@@ -384,12 +383,12 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
             String MaLHP = "";
             if (MaLopHocPhan < 10) {
                 MaLHP = "0" + MaLopHocPhan;
+            } else {
+                MaLHP += MaLopHocPhan;
             }
-            else
-            MaLHP += MaLopHocPhan;
 
             sql_l = "INSERT INTO lophocphan (MaLopHocPhan, TenLopHocPhan, MaHocPhan) "
-            + "VALUES ('LHP" + MaLHP + "', '" + tenLopHocPhan + "', '" + maHocPhan + "')";
+                    + "VALUES ('LHP" + MaLHP + "', '" + tenLopHocPhan + "', '" + maHocPhan + "')";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
             HienThi_tb_lophocphan();
@@ -411,9 +410,9 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
             String maHocPhan = this.getMaHP(combTHP.getSelectedItem().toString());
 
             String sql_l = "UPDATE lophocphan "
-            + "SET TenLopHocPhan = '" + tenLopHocPhan + "', "
-            + "MaHocPhan = '" + maHocPhan + "' "
-            + "WHERE MaLopHocPhan = '" + maLopHocPhan + "' ";
+                    + "SET TenLopHocPhan = '" + tenLopHocPhan + "', "
+                    + "MaHocPhan = '" + maHocPhan + "' "
+                    + "WHERE MaLopHocPhan = '" + maLopHocPhan + "' ";
             // stm = kn.createStatement();
             DataAccess.inSertEditDelete(sql_l);
             HienThi_tb_lophocphan();
@@ -450,9 +449,9 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
             String maLopHocPhan = (String) tb_lophocphan.getValueAt(row, 0);
 
             String maNganh = this.getMaNganh();
-            form_ad_dangkyhocphan dhp = new form_ad_dangkyhocphan(maNganh, maLopHocPhan, this);
+            form_ad_dangkyhocphan dkhp = new form_ad_dangkyhocphan(maNganh, maLopHocPhan, this);
             // this.setVisible(false);
-            dhp.setVisible(true);
+            dkhp.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -473,14 +472,17 @@ public class form_ad_lophocphan_JPanel extends javax.swing.JPanel {
     private void combTHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combTHPActionPerformed
         try {
             // TODO add your handling code here:
-            this.txtTLHP.setText(this.combTHP.getSelectedItem().toString());
-            
-            String sql_l = "SELECT NamKyHoc "
-                    + "FROM hocphan "
-                    + "WHERE TenHocPhan = '" + this.combTHP.getSelectedItem().toString() + "' ";
-            ResultSet rs = DataAccess.getResult(sql_l);
-            rs.next();
-            this.txtNamKyHoc.setText(rs.getString(1).toString());
+            if (this.combTHP.getSelectedIndex() != 0) {
+
+                this.txtTLHP.setText(this.combTHP.getSelectedItem().toString());
+
+                String sql_l = "SELECT NamKyHoc "
+                        + "FROM hocphan "
+                        + "WHERE TenHocPhan = '" + this.combTHP.getSelectedItem().toString() + "' ";
+                ResultSet rs = DataAccess.getResult(sql_l);
+                rs.next();
+                this.txtNamKyHoc.setText(rs.getString(1).toString());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(form_ad_lophocphan_JPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
