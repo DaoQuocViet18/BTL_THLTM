@@ -1,4 +1,4 @@
- Phần mềm quản lý điểm sinh viên
+ Phần mềm quản lý điểm sinh viên JAVA - NetBeans
 ![BTL_THLTM_0_](https://github.com/user-attachments/assets/84abe55b-81c0-462b-a4ec-ca004f158669)
 ![BTL_THLTM_0_DangNhap](https://github.com/user-attachments/assets/7de6313d-6cae-439f-ac30-99abe5445917)
 ![BTL_THLTM_1_Admin](https://github.com/user-attachments/assets/8ecb93a5-fa95-47f9-aa25-080fdc8ad1f9)
